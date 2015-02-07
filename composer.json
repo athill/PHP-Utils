@@ -1,6 +1,7 @@
 {
     "name": "athill/php-utils",
     "description": "PHP Utility Classes",
+    "license": "Apache-2.0",
     "authors": [
         {
             "name": "andy hill",
