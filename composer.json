@@ -1,0 +1,18 @@
+{
+    "name": "athill/php-utils",
+    "description": "PHP Utility Classes",
+    "authors": [
+        {
+            "name": "andy hill",
+            "email": "andy@andyhill.us"
+        }
+    ],
+    "require": {
+	"php": ">=5.3.0"
+    },
+    "autoload": {
+    	"psr-0": {
+    		"Athill\\Utils": "src/"
+    	}
+    }
+}
