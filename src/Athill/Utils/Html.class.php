@@ -18,7 +18,7 @@ Copyright 2012 andy hill
 /**
  * HTML generating interface
  *
- * @author andy hill 1 2009-2013
+ * @author andy hill 1 2009-2015
  * @version 3.1
  *
  */
