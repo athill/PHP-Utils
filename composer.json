@@ -13,7 +13,7 @@
     "version": "1.0",
     "autoload": {
     	"psr-4": {
-    		"Athill\\Utils": "src/"
+    		"Athill\\Utils\\": "src/"
     	}
     }
 }
