@@ -1,0 +1,56 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "This file is @generated automatically"
+    ],
+    "hash": "fa95150dac8b158353c5c97c6b86438c",
+    "packages": [
+        {
+            "name": "athill/php-utils",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/athill/PHP-Utils.git",
+                "reference": "2004e66a53a94b3d78788f724ceaefa65d1a93cc"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/athill/PHP-Utils/zipball/2004e66a53a94b3d78788f724ceaefa65d1a93cc",
+                "reference": "2004e66a53a94b3d78788f724ceaefa65d1a93cc",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Athill\\Utils\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache-2.0"
+            ],
+            "authors": [
+                {
+                    "name": "andy hill",
+                    "email": "andy@andyhill.us"
+                }
+            ],
+            "description": "PHP Utility Classes",
+            "time": "2015-02-07 22:19:50"
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "dev",
+    "stability-flags": {
+        "athill/php-utils": 20
+    },
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": [],
+    "platform-dev": []
+}

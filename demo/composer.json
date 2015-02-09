@@ -1,0 +1,14 @@
+{
+    "name": "athill/php-utils-demo",
+    "description": "test",
+    "authors": [
+        {
+            "name": "andy hill",
+            "email": "andy@andyhill.us"
+        }
+    ],
+    "require": {
+	   "athill/php-utils": "dev-master"
+    },
+    "minimum-stability": "dev"
+}
