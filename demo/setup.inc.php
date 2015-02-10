@@ -32,3 +32,4 @@ $h->p('hello world');
 $setup = new Athill\Utils\Setup($basesettings);
 //new Athill\Generator\Xml();
 
+echo 'setup complete';
