@@ -1,9 +1,10 @@
-<?php
+<?php namespace Athill\Utils;
 class Setup {
 	private $config = array();
 	private $defaults = array();
 
 	function __construct($basesettings) {
+		
 		$requireds = array('webroot');
 		foreach ($requireds as $required) {
 			if (!isset($basesettings[$required])) {

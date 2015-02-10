@@ -26,4 +26,5 @@ $loader = require_once($fileroot.'/vendor/autoload.php');
 echo $fileroot.'/vendor/autoload.php';
 print_r($loader);
 $setup = new Athill\Utils\Setup($basesettings);
+//new Athill\Generator\Xml();
 
