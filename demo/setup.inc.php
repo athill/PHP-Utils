@@ -22,7 +22,8 @@ $basesettings = array(
 
 //// autoloader
 
-require_once($fileroot.'/vendor/autoload.php');
-
-$setup = new Athill\Utils\Setup($basesettings);
+$loader = require_once($fileroot.'/vendor/autoload.php');
 echo $fileroot.'/vendor/autoload.php';
+print_r($loader);
+$setup = new Athill\Utils\Setup($basesettings);
+

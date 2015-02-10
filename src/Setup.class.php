@@ -12,7 +12,7 @@ class Setup {
 		}
 		$this->defaults = array(
 			'webroot'=>$basesettings['webroot'],
-			
+
 		);
 		$this->config = array_merge_recursive($defaults, $basesettings);
 		$this->override()
