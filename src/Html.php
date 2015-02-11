@@ -19,7 +19,7 @@ class Html extends Xml {
 	 	/**
 	 * constructor
 	 */ 
- 	function __construct($webroot) {
+ 	function __construct($webroot='') {
  		$this->webroot = $webroot;
  	}	
 
