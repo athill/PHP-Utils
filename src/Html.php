@@ -8,7 +8,7 @@
  *
  */
 
-require_once('Xml.class.php');
+// require_once('Xml.class.php');
 
 class Html extends Xml {
 	
