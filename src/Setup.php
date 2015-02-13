@@ -39,7 +39,7 @@ class Setup {
 
 		$defaults['meta'] = array(
 		  'description' => $defaults['sitename'],
-		  'keywords' => implode(',', explode(' ', $defaults['sitename']));
+		  'keywords' => implode(',', explode(' ', $defaults['sitename'])),
 		  'author' => ($_SERVER['USERNAME']) ? $_SERVER['USERNAME'] : '',
 		  'copyright' => date('Y'). $defaults['sitename'],
 		  'icon'=>'',
