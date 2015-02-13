@@ -17,19 +17,20 @@ $fileroot = '/home/athill/Code/github/PHP-Utils/demo';
 
 $basesettings = array(
 	'webroot'=>$webroot,
-	'fileroot'=>$fileroot
+	'fileroot'=>$fileroot,
 );
 
 //// autoloader
 
 $loader = require_once($fileroot.'/vendor/autoload.php');
-echo $fileroot.'/vendor/autoload.php';
-print_r($loader);
-
 $h = Athill\Utils\Html::singleton($webroot);
-
-$h->p('hello world');
 $setup = new Athill\Utils\Setup($basesettings);
-//new Athill\Generator\Xml();
 
-echo 'setup complete';
+echo 'setup done';
+// phpinfo();
+
+
+
+
+
+
