@@ -26,6 +26,7 @@ $loader = require_once($fileroot.'/vendor/autoload.php');
 $h = Athill\Utils\Html::singleton($webroot);
 $setup = new Athill\Utils\Setup($basesettings);
 
+
 echo 'setup done';
 // phpinfo();
 

@@ -1,6 +1,6 @@
 <?php
 //namespace templates;
-class defaultTemplate {
+class DefaultTemplate {
 
 
 	public $bodyAtts = 'id="default" class="default"';	
