@@ -1,2 +1,6 @@
 demo/vendor/
 composer.lock
+.env.*.php
+.env.php
+.DS_Store
+Thumbs.db
