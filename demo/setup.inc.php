@@ -13,7 +13,8 @@ if (!isset($_SESSION)) {
 
 //// need these
 $webroot = '';
-$fileroot = '/home/athill/Code/github/PHP-Utils/demo';
+$fileroot = '/home/vagrant/Code/sites/PHP-Utils/demo';
+
 
 $basesettings = array(
 	'webroot'=>$webroot,
