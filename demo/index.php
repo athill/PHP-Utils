@@ -1,6 +1,8 @@
 <?php
 require_once('setup.inc.php');
 
+$page = new \Athill\Utils\Page();
+
 // $loader = require('vendor/autoload.php');
 // print_r($loader);
 

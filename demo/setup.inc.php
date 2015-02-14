@@ -28,6 +28,10 @@ $h = Athill\Utils\Html::singleton($webroot);
 $setup = new Athill\Utils\Setup($basesettings);
 
 
+$site = $setup->getDefaults();
+
+
+
 echo 'setup done';
 // phpinfo();
 

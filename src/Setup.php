@@ -1,7 +1,6 @@
 <?php namespace Athill\Utils;
 class Setup {
-	private $config = array();
-	private $defaults = array();
+	private $basesettings = array();
 
 	function __construct($basesettings) {
 		
@@ -11,16 +10,10 @@ class Setup {
 				throw new UnexpectedValueException('Required field '.$required.' missing from Setup args.');
 			}
 		}
-		$this->setDefaults();
-		print_r($this->defaults);
-		$this->config = array_merge_recursive($this->defaults, $basesettings);
-		
-		// $this->override()
-
-
+		$this->basesettings = $basesettings;
 	}
 
-	protected function setDefaults() {
+	public function getDefaults() {
 		$defaults = array(
 			'webroot'=>'',
 			'fileroot'=>'',
@@ -29,15 +22,21 @@ class Setup {
 			'sitename'=>'Hello World',
 			'js'=>array(),
 			'css'=>array(),
-			'templatelocation'=>'/classes/Templates',
+			'jsModules'=>array();
+			'classpath'=>'/classes',
 			'template'=>'default',
 			'view' => $_SERVER['PHP_SELF'],
 			'filename' => basename($_SERVER['PHP_SELF']),
+			'dir' => dirname($_SERVER['PHP_SELF']),
+
 
 		);
 		$defaults['pagetitle'] = $defaults['sitename'];
-
-
+		$menufile = $defaults['fileroot'].'/menu.json';
+		$defaults['menu'] = array();
+		if (file_exists($menufile)) {
+			$defaults['menu'] = json_decode($menufile);
+		}
 		$defaults['meta'] = array(
 		  'description' => $defaults['sitename'],
 		  'keywords' => implode(',', explode(' ', $defaults['sitename'])),
@@ -53,7 +52,15 @@ class Setup {
 			'leftsidebar'=>'',
 			'rightsidebar'=>'',
 		);
-		$this->defaults = $defaults;
+		//// override base settings
+		$defaults = array_merge_recursive($defaults, $this->basesettings);
+		//// override directory settings
+		$dirSettingsFile = $defaults['dir'].'/directorySettings.php';
+		if (file_exists($dirSettingsFile)) {
+			$dirSettings = require($dirSettingsFile);
+			array_merge_recursive($defaults, $dirSettings);
+		}
+		return $defaults;		
 	}
 
 	function override($config) {
