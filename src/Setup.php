@@ -22,7 +22,7 @@ class Setup {
 			'sitename'=>'Hello World',
 			'js'=>array(),
 			'css'=>array(),
-			'jsModules'=>array();
+			'jsModules'=>array(),
 			'classpath'=>'/classes',
 			'template'=>'default',
 			'view' => $_SERVER['PHP_SELF'],

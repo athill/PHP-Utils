@@ -11,17 +11,18 @@ class Page {
 		// 	$options['jsModules'] = array_merge($site['jsModules'], $options['jsModules']) or die("^^^!!");
 		// }
 		// if (isset($options)) $site = array_merge($site, $options) or die("^^^");	
-		
+
 		//// local options	
 		$site = array_merge_recursive($site, $options);
 		////Template
-		$templateClass = ucfirst($site['template']).'Template.php';
-		$localTemplatePath = $site['classpath'].'/Templates/'.$templateClass;
-		if (file_exists($localTemplatePath)) {
+		$templateClass = ucfirst($site['template']).'Template';
+		$localTemplatePath = $site['classpath'].'/Templates/'.$templateClass.'.php';
+		if (file_exists($localTemplatePath.'.php')) {
 			require($localTemplatePath);
 			$this->template = new $templateClass();
 		} else {
-			$this->template = new Athill\Utils\Templates\$templateClass();
+			$templateClass = "Athill\\Utils\\Templates\\".$templateClass;
+			$this->template = new $templateClass();
 		}
 		$this->template->start();
 	}
