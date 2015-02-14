@@ -217,7 +217,7 @@ class Html extends Xml {
 			}
 		}
 		$this->cbody();
-		$this->chtml();
+		$this->ctag('html', false);
 	}
 
 	/********************
