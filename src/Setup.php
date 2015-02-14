@@ -14,6 +14,7 @@ class Setup {
 		$this->setDefaults();
 		print_r($this->defaults);
 		$this->config = array_merge_recursive($this->defaults, $basesettings);
+		
 		// $this->override()
 
 

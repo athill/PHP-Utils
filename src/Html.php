@@ -132,9 +132,20 @@ class Html extends Xml {
 	/*****
 	 * Document Tags
 	 ******************/
-	public function ohtml($title, $includes= array(), $options=array()) {
+	public function ohtml($title, $includes=array(), $options=array()) {
+		$this->start();
+		$this->head($title, $includes, $options);
+		$bodyatts = (isset($options['bodyatts'])) ? $options['bodyatts'] : '';
+		$this->obody($bodyatts);
+	}
+
+	public function start() {
 		$this->tnl('<!DOCTYPE html>');
-		$this->otag("html", 'lang="en"', false);
+		$this->otag("html", 'lang="en"', false);		
+	}
+
+	public function head($title, $includes= array(), $options=array()) {
+
 		$this->otag("head");
 		$this->tag("title", '', $title, true, false);
 		$defaults = array(
@@ -145,7 +156,8 @@ class Html extends Xml {
 		  'icon'=>'',
 		  'compatible'=>'IE=edge,chrome=1',
 		  'viewport'=>'width=device-width',
-		  'charset'=>'uft-8'
+		  'charset'=>'uft-8',
+		  'extra'=>''
 		);
 		$options = $this->extend($defaults, $options);
 		$this->tag("meta", 'charset="'.$options['charset'].'"');
@@ -154,10 +166,20 @@ class Html extends Xml {
 		$metas = array('keywords', 'description', 'author', 'copyright', 'viewport');
 		foreach ($metas as $meta) {
 			$this->tag('meta', 'name="'.$meta.'" content="'.$options[$meta].'"');
-		}		
-		$options['icon'] = $this->fixLink($options['icon']);
-		$this->tag("link", 'rel="icon" href="'.$options['icon'].'" type="image/x-icon"');
+		}
+		if ($options['icon'] != '')	{
+			$options['icon'] = $this->fixLink($options['icon']);
+			$this->tag("link", 'rel="icon" href="'.$options['icon'].'" type="image/x-icon"');
+		}
 		$this->tag("link", 'rel="shortcut icon" href="'.$options['icon'].'" type="image/vnd.microsoft.icon"');
+		$this->includes($includes);
+		if ($options['extra'] != '') {
+			$this->tnl($options['extra']);
+		}
+		$this->ctag('head');
+	}
+
+	protected function includes($includes) {
 		for ($i = 0; $i < count($includes); $i++) {
 			$filenameParts = explode('.', $includes[$i]);
 			$ext = end($filenameParts);
@@ -166,7 +188,7 @@ class Html extends Xml {
 			} else {
 				$this->stylesheet($includes[$i]);
 			}
-		}
+		}			
 	}
 
 	public function body($atts="") {
