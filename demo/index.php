@@ -5,7 +5,7 @@ $page = new \Athill\Utils\Page();
 
 $h->p('content');
 
-$page->end;
+$page->end();
 
 // $loader = require('vendor/autoload.php');
 // print_r($loader);
