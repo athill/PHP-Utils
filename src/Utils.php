@@ -49,7 +49,7 @@ class Utils {
 				}
 			}
 		}
-		return $$defaults;
+		return $defaults;
 	}
 
 	function isAssoc($arr) {
