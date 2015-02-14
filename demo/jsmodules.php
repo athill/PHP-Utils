@@ -5,12 +5,15 @@ $localcss = '/css';
 
 return array(
 	'jquery' => array(
-		'js'=>array($bower.'/jquery/dist/jquery.min.js')
+		'root'=>$bower.'/jquery/dist',
+		'js'=>array('/jquery.min.js')
 	),
 	'bootstrap'=>array(
-		'js'=>array($bower.'/bootstrap/dist/js/bootstrap.min.js'),
-		'css'=>array($bower.'/bootstrap/dist/css/bootstrap.min.css',
-			$bower.'/bootstrap/dist/css/bootstrap-theme.min.css'
+		'root'=>$bower.'/bootstrap/dist',
+		'js'=>array('/js/bootstrap.min.js'),
+		'css'=>array(
+			'/css/bootstrap.min.css',
+			'/css/bootstrap-theme.min.css'
 		)
 	)
 );

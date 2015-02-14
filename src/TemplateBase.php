@@ -6,34 +6,30 @@ class TemplateBase {
 	protected $jsModules = array();
 
 	private $includes = array();
+	private $jsModule;
 
 	function __construct() {
 		global $site;
 		//// jsModules
 		$jsModuleFile = $site['fileroot'].'/jsmodules.php';
-		$jsModules = array();
-		if (file_exists($jsModuleFile)) {
-			$jsModules = require($jsModuleFile);
-		}
-		$jsModule = new \Athill\Utils\JsModule($jsModules);
-		foreach ($jsModules as $module => $val) {
+		$jsModules = (file_exists($jsModuleFile)) ?
+			require($jsModuleFile) :
+			array();
+		//// determine which modules to include
+		foreach ($jsModules as $id => $data) {
 			//// if it's been set on page/directory, leave that setting.
-			if (!isset($site['jsModules'][$module])) {
+			if (!isset($site['jsModules'][$id])) {
 				//// otherwise, if it's in the template jsModules set to true, otherwise set to false
-				$site['jsModules'][$module] = in_array($module, $this->jsModules);
+				$site['jsModules'][$id] = in_array($id, $this->jsModules);
 				
 			}
 		}
 		//// add module files to includes
-		foreach ($site['jsModules'] as $module => $include) {
+		$jsModuleManager = new \Athill\Utils\JsModuleManager($jsModules);
+		foreach ($site['jsModules'] as $id => $include) {
 			if ($include) {
-				$files = $jsModule->getModule($module);
-				if (isset($files['js'])) {
-					$this->includes = array_merge($this->includes, $files['js']);
-				}
-				if (isset($files['css'])) {
-					$this->includes = array_merge($this->includes, $files['css']);
-				}				
+				$module = $jsModuleManager->getModule($id);
+				$this->addModuleFiles($module);
 			}
 		}
 		//// template scripts and styles
@@ -45,10 +41,28 @@ class TemplateBase {
 		$this->includes = array_merge($this->includes, $site['css']);
 	}
 
+	private function addModuleFiles($module) {
+		$filetypes = array('js', 'css');
+		foreach ($filetypes as $filetype) {
+			if (isset($module[$filetype])) {
+				$this->addFiles($module['root'], $module[$filetype]);
+			}
+		}	
+	}
+
+	private function addFiles($root, $files) {
+		if ($root != '') {
+			$files = array_map(function($file) use($root) {
+				return $root.$file;
+			}
+			$files);			
+		} 
+		$this->includes = array_merge($this->includes, $files);
+	}
+
 	function start() {
 		global $h, $site;
 		$h->start();
-		
 		$h->head($site['pagetitle'], $this->includes, $site['meta']);
 		$h->obody();
 		$this->heading();

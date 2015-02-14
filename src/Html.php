@@ -198,7 +198,12 @@ class Html extends Xml {
 		$this->tnl("<body$atts>");
 	}
 
+	//// @deprecated: use end(), free up chtml
 	public function chtml() {
+		$this->end();
+	}
+
+	public function end() {
 		if(!$this->jsInline){
 			for($i=0;$i<sizeof($this->js);$i++) {
 				 if($this->js[$i]['type']=='file'){
@@ -217,7 +222,7 @@ class Html extends Xml {
 			}
 		}
 		$this->cbody();
-		$this->ctag('html', false);
+		$this->ctag('html', false);		
 	}
 
 	/********************
