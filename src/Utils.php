@@ -42,7 +42,7 @@ class Utils {
 	public function extend($defaults, $options) {
 		foreach ($defaults as $key => $value) {
 			if (array_key_exists($key, $options)) {
-				if (is_array($options[$key] && $this->isAssoc($options[$key]))) {
+				if (is_array($options[$key]) && $this->isAssoc($options[$key])) {
 					$defaults[$key] = $this->extend($defaults[$key], $options[$key]);
 				} else {
 					$defaults[$key] = $options[$key];
