@@ -159,18 +159,19 @@ class Html extends Xml {
 		  'extra'=>''
 		);
 		$options = $this->extend($defaults, $options);
-		$this->tag("meta", 'charset="'.$options['charset'].'"');
-		$this->tag("meta", 'http-equiv="X-UA-Compatible" content="'.$options['compatible'].'"');
+		$this->meta('charset="'.$options['charset'].'"');
+		$this->meta('http-equiv="X-UA-Compatible" content="'.$options['compatible'].'"');
 		
 		$metas = array('keywords', 'description', 'author', 'copyright', 'viewport');
 		foreach ($metas as $meta) {
-			$this->tag('meta', 'name="'.$meta.'" content="'.$options[$meta].'"');
+			$this->meta('name="'.$meta.'" content="'.$options[$meta].'"');
 		}
 		if ($options['icon'] != '')	{
 			$options['icon'] = $this->fixLink($options['icon']);
 			$this->tag("link", 'rel="icon" href="'.$options['icon'].'" type="image/x-icon"');
+			$this->tag("link", 'rel="shortcut icon" href="'.$options['icon'].'" type="image/vnd.microsoft.icon"');
 		}
-		$this->tag("link", 'rel="shortcut icon" href="'.$options['icon'].'" type="image/vnd.microsoft.icon"');
+		
 		$this->includes($includes);
 		if ($options['extra'] != '') {
 			$this->tnl($options['extra']);
