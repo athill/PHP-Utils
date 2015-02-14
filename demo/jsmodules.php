@@ -9,7 +9,7 @@ return array(
 	),
 	'bootstrap'=>array(
 		'js'=>array($bower.'/bootstrap/dist/js/bootstrap.min.js'),
-		'css'=>array($bower.'/boostrap/dist/css/bootstrap.min.css',
+		'css'=>array($bower.'/bootstrap/dist/css/bootstrap.min.css',
 			$bower.'/bootstrap/dist/css/bootstrap-theme.min.css'
 		)
 	)
