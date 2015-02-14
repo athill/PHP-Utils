@@ -145,9 +145,8 @@ class Html extends Xml {
 	}
 
 	public function head($title, $includes= array(), $options=array()) {
-
-		$this->otag("head");
-		$this->tag("title", '', $title, true, false);
+		$this->ohead();
+		$this->title($title);
 		$defaults = array(
 		  'description' => "",
 		  'keywords' => "",
@@ -176,7 +175,7 @@ class Html extends Xml {
 		if ($options['extra'] != '') {
 			$this->tnl($options['extra']);
 		}
-		$this->ctag('head');
+		$this->chead();
 	}
 
 	protected function includes($includes) {
