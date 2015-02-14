@@ -101,7 +101,7 @@ class Html extends Xml {
          //$startsWithDoubleSlash = substr($link, 0, 2) == "//";
          $isFullUrl = preg_match('/^(https?:)?\/\//', $link);
          $webrootNonempty = strlen($this->webroot) > 0;
-         $noWebrootInLink = strpos($link, $this->webroot) !== 0;
+         $noWebrootInLink = $webrootNonempty && strpos($link, $this->webroot) !== 0;
          $usingRedirect = array_key_exists('REDIRECT_URL',$_SERVER);
          if ($usingRedirect && !$startsWithSlash && !$isFullUrl && !$startsWithPound) {
             return dirname($_SERVER['SCRIPT_NAME']).'/'.$link; 
@@ -168,8 +168,8 @@ class Html extends Xml {
 		}
 		if ($options['icon'] != '')	{
 			$options['icon'] = $this->fixLink($options['icon']);
-			$this->tag("link", 'rel="icon" href="'.$options['icon'].'" type="image/x-icon"');
-			$this->tag("link", 'rel="shortcut icon" href="'.$options['icon'].'" type="image/vnd.microsoft.icon"');
+			$this->link('rel="icon" href="'.$options['icon'].'" type="image/x-icon"');
+			$this->link('rel="shortcut icon" href="'.$options['icon'].'" type="image/vnd.microsoft.icon"');
 		}
 		
 		$this->includes($includes);
