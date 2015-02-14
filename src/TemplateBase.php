@@ -43,8 +43,6 @@ class TemplateBase {
 		//// page/directory scripts and styles
 		$this->includes = array_merge($this->includes, $site['js']);
 		$this->includes = array_merge($this->includes, $site['css']);
-
-		$this->start();
 	}
 
 	function start() {
