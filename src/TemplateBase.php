@@ -15,7 +15,7 @@ class TemplateBase {
 		if (file_exists($jsModuleFile)) {
 			$jsModules = require($jsModuleFile);
 		}
-		$jsModule = new Athill\Utils\JsModule($jsModules);
+		$jsModule = new \Athill\Utils\JsModule($jsModules);
 		foreach ($jsModules as $module) {
 			//// if it's been set on page/directory, leave that setting.
 			if (!isset($site['jsModules'][$module])) {

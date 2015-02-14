@@ -52,20 +52,15 @@ class Setup {
 			'leftsidebar'=>'',
 			'rightsidebar'=>'',
 		);
+		$utils = new \Athill\Utils\Utils();
 		//// override base settings
-		$defaults = array_merge_recursive($defaults, $this->basesettings);
+		$defaults = $utils->extend($defaults, $this->basesettings);
 		//// override directory settings
 		$dirSettingsFile = $defaults['dir'].'/directorySettings.php';
 		if (file_exists($dirSettingsFile)) {
 			$dirSettings = require($dirSettingsFile);
-			array_merge_recursive($defaults, $dirSettings);
+			$defaults = $utils->extend($defaults, $dirSettings);
 		}
 		return $defaults;		
 	}
-
-	function override($config) {
-		$this->config = array_merge_recursive($this->config, $config);
-	}
-
-
 }

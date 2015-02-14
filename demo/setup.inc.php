@@ -29,7 +29,7 @@ $setup = new Athill\Utils\Setup($basesettings);
 
 
 $site = $setup->getDefaults();
-
+print_r($site);
 
 
 echo 'setup done';

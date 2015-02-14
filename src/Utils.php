@@ -37,5 +37,23 @@ class Utils {
 		json_decode($check_string);
  		return (json_last_error() == JSON_ERROR_NONE);
 	}
+
+	////Overrides struct defaults with options
+	public function extend($defaults, $options) {
+		foreach ($defaults as $key => $value) {
+			if (array_key_exists($key, $options)) {
+				if (is_array($options[$key] && $this->isAssoc($options[$key]))) {
+					$defaults[$key] = $this->extend($defaults[$key], $options[$key]);
+				} else {
+					$defaults[$key] = $options[$key];
+				}
+			}
+		}
+		return $$defaults;
+	}
+
+	function isAssoc($arr) {
+    	return array_keys($arr) !== range(0, count($arr) - 1);
+	}	
 }
 ?>
