@@ -5,12 +5,10 @@ class TemplateBase {
 	protected $css = array();
 	protected $jsModules = array();
 
-	function __construct() {
-		$this->start();
-	}
+	private $includes;
 
-	function start() {
-		global $h, $site;
+	function __construct() {
+		global $site;
 		//// jsModules
 		$jsModuleFile = $site['fileroot'].'/jsmodules.php';
 		$jsModules = array();
@@ -25,13 +23,36 @@ class TemplateBase {
 				$site['jsModules'][$module] = in_array($module, $this->jsModules);
 				
 			}
-		}		
-		foreach ($this->jsModules as $module)
-		foreach($site['jsModules'] as $module)
+		}
+		//// add module files to includes
+		foreach ($site['jsModules'] as $module => $include) {
+			if ($include) {
+				$files = $jsModule->getModule($module);
+				if (isset($files['js'])) {
+					$this->includes = array_merge($this->includes, $files['js']);
+				}
+				if (isset($files['css'])) {
+					$this->includes = array_merge($this->includes, $files['css']);
+				}				
+			}
+		}
+		//// template scripts and styles
+		$this->includes = array_merge($this->includes, $this->js);
+		$this->includes = array_merge($this->includes, $this->css);
+
+		//// page/directory scripts and styles
+		$this->includes = array_merge($this->includes, $site['js']);
+		$this->includes = array_merge($this->includes, $site['css']);
+
+		$this->start();
+	}
+
+	function start() {
+		global $h, $site;
 		$h->start();
 		
-		$h->head();
-		$this->header();
+		$h->head($site['pagetitle'], $includes, $site['meta']);
+		$this->heading();
 	}
 
 	function end() {
@@ -42,10 +63,13 @@ class TemplateBase {
 
 	}
 
+	function heading() {
+		
+	}
+
 
 	function footer() {
 
 	}
 
 }
-

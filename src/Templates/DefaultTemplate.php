@@ -1,8 +1,8 @@
 <?php namespace Athill\Utils\Templates;
 //namespace templates;
-class DefaultTemplate {
+class DefaultTemplate extends Athill\Utils\TemplateBase {
 
-
+/*
 	public $bodyAtts = 'id="default" class="default"';	
 	public $stylesheets = "/global/css/import.css,//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css";
 	public $scripts = "/global/js/jquery-1.9.1.min.js,/global/js/nav.js,/global/js/zebrarows.js";
@@ -190,7 +190,5 @@ class DefaultTemplate {
 		$h->cdiv();
 		
 		$h->chtml();			
-	}
+	}*/
 }
-
-?>

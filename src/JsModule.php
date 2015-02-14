@@ -17,6 +17,13 @@ class JsModule {
 	}
 	
 	
+	public function getModule($id) {
+		if (isset($this->modules[$id])) {
+			return $this->modules[$id];
+		} else {
+			throw new Exception('Undefined module '.$id);
+		}
+	}
 
 	public function modify ($mods,$action) {
 		global $site;
