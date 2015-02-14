@@ -16,8 +16,7 @@ class TemplateBase {
 			$jsModules = require($jsModuleFile);
 		}
 		$jsModule = new \Athill\Utils\JsModule($jsModules);
-		foreach ($jsModules as $module) {
-			echo 'module: '.$module;
+		foreach ($jsModules as $module => $val) {
 			//// if it's been set on page/directory, leave that setting.
 			if (!isset($site['jsModules'][$module])) {
 				//// otherwise, if it's in the template jsModules set to true, otherwise set to false
