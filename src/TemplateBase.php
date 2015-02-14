@@ -51,7 +51,7 @@ class TemplateBase {
 		global $h, $site;
 		$h->start();
 		
-		$h->head($site['pagetitle'], $includes, $site['meta']);
+		$h->head($site['pagetitle'], $this->includes, $site['meta']);
 		$this->heading();
 	}
 
