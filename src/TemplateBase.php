@@ -5,7 +5,7 @@ class TemplateBase {
 	protected $css = array();
 	protected $jsModules = array();
 
-	private $includes;
+	private $includes = array();
 
 	function __construct() {
 		global $site;
