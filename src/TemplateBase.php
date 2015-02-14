@@ -54,7 +54,7 @@ class TemplateBase {
 		if ($root != '') {
 			$files = array_map(function($file) use($root) {
 				return $root.$file;
-			}
+			},
 			$files);			
 		} 
 		$this->includes = array_merge($this->includes, $files);
