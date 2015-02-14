@@ -141,7 +141,7 @@ class Html extends Xml {
 
 	public function start() {
 		$this->tnl('<!DOCTYPE html>');
-		$this->ohtml('lang="en"');		
+		$this->otag('html', 'lang="en"', false);		
 	}
 
 	public function head($title, $includes= array(), $options=array()) {
