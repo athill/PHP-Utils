@@ -56,6 +56,9 @@ class TemplateBase {
 	}
 
 	function end() {
+		global $h;
+		$this->footer();
+		$h->chtml();
 
 	}
 
@@ -64,7 +67,7 @@ class TemplateBase {
 	}
 
 	function heading() {
-		
+
 	}
 
 
