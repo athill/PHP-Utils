@@ -1,4 +1,4 @@
-<?php
+<?php namespace Athill\Utils\Templates;
 //namespace templates;
 class DefaultTemplate {
 
