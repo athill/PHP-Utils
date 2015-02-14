@@ -1,6 +1,6 @@
 <?php namespace Athill\Utils\Templates;
 //namespace templates;
-class DefaultTemplate extends Athill\Utils\TemplateBase {
+class DefaultTemplate extends \Athill\Utils\TemplateBase {
 
 /*
 	public $bodyAtts = 'id="default" class="default"';	
