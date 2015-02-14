@@ -42,7 +42,7 @@ class Html extends Xml {
 			"head,header,hgroup,html,i,iframe,ins,kbd,label,legend,li,map,mark,menu,meter,nav,noscript,object,ol,optgroup,option," .
 			"output,p,pre,progress,q,rp,rt,ruby,s,samp,script,section,select,span,strong,style,sub,summary,sup,table,tbody," .
 			"td,textarea,tfoot,th,thead,time,title,tr,u,ul,var,video,wbr");
-		$indentTags = explode(',', "datalist,div,dl,fieldset,footer,header,nav,ol,section,select,tr,ul");
+		$indentTags = explode(',', "datalist,div,dl,fieldset,footer,head,header,nav,ol,section,select,tr,ul");
 		$command = substr($name, 0, 1);
 		$tag = substr($name, 1);
 	
@@ -141,7 +141,7 @@ class Html extends Xml {
 
 	public function start() {
 		$this->tnl('<!DOCTYPE html>');
-		$this->otag("html", 'lang="en"', false);		
+		$this->ohtml('lang="en"');		
 	}
 
 	public function head($title, $includes= array(), $options=array()) {
@@ -216,8 +216,8 @@ class Html extends Xml {
 				 }	
 			}
 		}
-		$this->tnl('</body>');
-		$this->tnl("</html>");
+		$this->cbody();
+		$this->chtml();
 	}
 
 	/********************

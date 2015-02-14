@@ -50,6 +50,7 @@ class TemplateBase {
 		$h->start();
 		
 		$h->head($site['pagetitle'], $this->includes, $site['meta']);
+		$h->obody();
 		$this->heading();
 	}
 
