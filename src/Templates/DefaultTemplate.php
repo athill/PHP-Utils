@@ -4,6 +4,10 @@ class DefaultTemplate extends \Athill\Utils\TemplateBase {
 
 	protected $jsModules = array('jquery', 'bootstrap');
 
+	public function heading() {
+		
+	}
+
 /*
 	public $bodyAtts = 'id="default" class="default"';	
 	public $stylesheets = "/global/css/import.css,//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css";

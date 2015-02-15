@@ -139,13 +139,18 @@ class Html extends Xml {
 		$this->obody($bodyatts);
 	}
 
-	public function begin($headCallback, $options=array()) {
+	public function begin($options=array()) {
 		$defaults = array(
 			'bodyatts'=>''
-
+			'headcallback'=>null,
+			'headcallbackargs'=>array()
 		);
+		$options = $this->extend($defaults, $options);
 		$this->tnl('<!DOCTYPE html>');
-		$this->otag('html', 'lang="en"', false);		
+		$this->otag('html', 'lang="en"', false);
+		if (is_null($options['headcallback'])) {
+			
+		}
 	}
 
 	public function head($title, $includes= array(), $options=array()) {
