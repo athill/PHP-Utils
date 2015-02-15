@@ -81,7 +81,7 @@ class TemplateBase {
 
 	protected function sidebar($id, $items) {
 		global $h;
-		$h->oaside('id="'$id'" class="sidebar"');
+		$h->oaside('id="'.$id.'" class="sidebar"');
 		foreach ($items as $item) {
 			switch ($item['type']) {
 				case 'content':
