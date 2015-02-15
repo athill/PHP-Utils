@@ -51,6 +51,13 @@ class DefaultTemplate extends \Athill\Utils\TemplateBase {
 		$h->cdiv('#layout');
 	}
 
+	protected function footer() {
+		global $h, $site;
+		$h->ofooter();
+		$h->tnl('&copy; '. $site['meta']['copyright']);
+		$h->cfooter();
+	}
+
 /*
 	protected $bodyAtts = 'id="default" class="default"';	
 	public $stylesheets = "/global/css/import.css,//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css";
