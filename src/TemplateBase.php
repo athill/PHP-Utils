@@ -51,7 +51,6 @@ class TemplateBase {
 	}
 
 	private function addFiles($root, $files) {
-		echo 'adding files';
 		if ($root != '') {
 			$files = array_map(function($file) use($root) {
 				return $root.$file;
@@ -63,7 +62,6 @@ class TemplateBase {
 
 	public function begin() {
 		global $h, $site;
-		print_r($this->includes);
 		$h->begin([
 			'title'=>$site['meta']['title'],
 			'includes'=>$this->includes,
