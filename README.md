@@ -27,6 +27,6 @@ The actual point of this is in the demo/vendor/athill/php-utils/src directory. M
 	$h->p('content');
 
 	$page->end();
-3. setup.inc.php sets some things and calls Setup.php which sets a bunch of defaults.
+3. setup.inc.php sets some things up and calls Setup.php which sets a bunch of defaults.
 4. Page.php uses these defaults and optional options to render the stuff around the content
 5. The content, in this case, is &lt;p&gt;content&lt;/p&gt;, from $h->p('content');
