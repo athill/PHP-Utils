@@ -62,25 +62,30 @@ class TemplateBase {
 
 	public function begin() {
 		global $h;
-		$h->begin();
-		$this->head();
-		$h->obody();
+		$h->begin($site['meta']['title'], $this->includes, $site['meta']);
+		$this->beginRender();
 		$this->heading();
 	}
 
 	public function end() {
 		global $h;
 		$this->footer();
+		$this->endRender();
 		$h->end();
 
 	}
 
-	public function head() {
-		global $h, $site;
-		$h->head($site['meta']['title'], $this->includes, $site['meta']);
+	public function beginRender() {
+
 	}
 
+
+
 	function heading() {
+
+	}
+
+	public function endRender() {
 
 	}
 

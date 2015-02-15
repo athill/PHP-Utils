@@ -4,8 +4,19 @@ class DefaultTemplate extends \Athill\Utils\TemplateBase {
 
 	protected $jsModules = array('jquery', 'bootstrap');
 
+	public function beginRender() {
+		global $h;
+		$h->odiv('class="content"');
+	}
+
+	public function endRender() {
+		global $h;
+		$h->cdiv('/.content');
+	}
+
 	public function heading() {
-		
+		global $h, $site;
+		$h->h1($site['pagetitle']);
 	}
 
 /*
