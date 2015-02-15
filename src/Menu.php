@@ -14,6 +14,7 @@ class Menu {
 	function __construct($view='') {
 		global $site;
 		$this->menu = $site['menu'];
+		print_r($this->menu);
 		$this->view = ($view != '') ? $view : $site['view'];
 	}
 
