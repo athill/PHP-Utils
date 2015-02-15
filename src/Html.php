@@ -143,14 +143,17 @@ class Html extends Xml {
 		$defaults = array(
 			'bodyatts'=>'',
 			'headcallback'=>null,
-			'headcallbackargs'=>array()
+			'title'=>'',
+			'includes'=>array(),
+			'headoptions'=>array()
 		);
 		$options = $this->extend($defaults, $options);
 		$this->tnl('<!DOCTYPE html>');
 		$this->otag('html', 'lang="en"', false);
 		if (is_null($options['headcallback'])) {
-
+			$this->head($options['title'], $options['includes'], $options['headoptions']);
 		}
+		$this->obody($options['bodyatts']);
 	}
 
 	public function head($title, $includes= array(), $options=array()) {
@@ -168,8 +171,8 @@ class Html extends Xml {
 		  'extra'=>''
 		);
 		$options = $this->extend($defaults, $options);
-		$this->meta('charset="'.$options['charset'].'"');
-		$this->meta('http-equiv="X-UA-Compatible" content="'.$options['compatible'].'"');
+		$this->meta(['charset'=>$options['charset']]);
+		$this->meta(['http-equiv'=>'X-UA-Compatible', 'content'=>$options['content']]);
 		
 		$metas = array('keywords', 'description', 'author', 'copyright', 'viewport');
 		foreach ($metas as $meta) {
@@ -179,9 +182,9 @@ class Html extends Xml {
 			}
 		}
 		if ($options['icon'] != '')	{
-			$options['icon'] = $this->fixLink($options['icon']);
-			$this->link('rel="icon" href="'.$options['icon'].'" type="image/x-icon"');
-			$this->link('rel="shortcut icon" href="'.$options['icon'].'" type="image/vnd.microsoft.icon"');
+			$href = $this->fixLink($options['icon']);
+			$this->link(['rel'=>'icon', 'href'=>$href, 'type'=>'image/x-icon']);
+			$this->link(['rel'=>'shortcut icon', 'href'=>$href, 'type'=>'image/vnd.microsoft.icon']);
 		}
 		
 		$this->includes($includes);
@@ -1175,4 +1178,3 @@ class Html extends Xml {
 		$this->cdl();
 	}
 }
-?>
