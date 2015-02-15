@@ -3,6 +3,7 @@
 class DefaultTemplate extends \Athill\Utils\TemplateBase {
 
 	protected $jsModules = array('jquery', 'bootstrap');
+	protected $css = ['/css/default.css'];
 
 	protected function beginRender() {
 		global $h;

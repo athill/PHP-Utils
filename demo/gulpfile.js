@@ -9,6 +9,8 @@ console.log('less');
     .pipe(gulp.dest('./css'));
 });
 
+gulp.task('default', ['less']);
+
 var watcher = gulp.task('watch', function () {
     gulp.watch('less/*.less', ['less']);
 });
