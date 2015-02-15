@@ -12,5 +12,10 @@ $page = new \Athill\Utils\Page($local);
 $h->p('content');
 $h->a('http://andyhill.us', 'andyhill.us');
 
+$menu = new \Athill\Utils\Menu();
+$bc = $menu->getBreadcrumbs();
+$h->pa($bc);
+
+$menu->renderMenu();
 
 $page->end();

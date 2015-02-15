@@ -33,7 +33,9 @@ class Menu {
 		while ($buildpath != $this->view) {
 			$sanitycheck++;
 			if ($sanitycheck == 100) {
-				throw new Exception("Endless loop in getBreadcrumbs(): ".$this->view, 1);
+				//throw new Exception("Endless loop in getBreadcrumbs(): ".$this->view, 1);
+				echo 'sanity fail';
+				return $breadcrumbs;
 				
 			}
 			foreach ($menu as $entry) {
@@ -60,7 +62,7 @@ class Menu {
 		return ['href'=>$buildpath.$entry['href'], 'display'=>$entry['display']];
 	}
 
-	public function getMenu($options=[]) {
+	public function renderMenu($options=[]) {
 		global $h;
 		$defaults = [
 			'view'=>$this->view,
