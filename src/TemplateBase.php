@@ -3,9 +3,9 @@
 class TemplateBase {
 	protected $js=array();
 	protected $css = array();
+	protected $jsModules = array();
 
 	private $includes = array();
-	protected $jsModules = array();
 	private $menu;
 
 	function __construct() {
@@ -24,8 +24,6 @@ class TemplateBase {
 				
 			}
 		}
-		echo 'here:::';
-		print_r($site['jsModules']);
 		//// add module files to includes
 		$jsModuleManager = new \Athill\Utils\JsModuleManager($jsModules);
 		foreach ($site['jsModules'] as $id => $include) {
@@ -41,8 +39,6 @@ class TemplateBase {
 		//// page/directory scripts and styles
 		$this->includes = array_merge($this->includes, $site['js']);
 		$this->includes = array_merge($this->includes, $site['css']);
-
-		print_r($this->includes);
 	}
 
 	private function addModuleFiles($module) {

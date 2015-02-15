@@ -149,7 +149,6 @@ class Html extends Xml {
 		$options = $this->extend($defaults, $options);
 		$this->tnl('<!DOCTYPE html>');
 		$this->otag('html', 'lang="en"', false);
-		print_r($options);
 		$this->head($options['title'], $options['includes'], $options['headoptions']);
 		$this->obody($options['bodyatts']);
 	}
