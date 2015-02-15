@@ -6,12 +6,12 @@ class DefaultTemplate extends \Athill\Utils\TemplateBase {
 
 	public function beginRender() {
 		global $h;
-		$h->odiv('class="content"');
+		$h->odiv('class="container"');
 	}
 
 	public function endRender() {
 		global $h;
-		$h->cdiv('/.content');
+		$h->cdiv('/.container');
 	}
 
 	public function heading() {
