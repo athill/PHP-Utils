@@ -61,7 +61,7 @@ class TemplateBase {
 
 	public function begin() {
 		global $h, $site;
-		// $h->begin(, $this->includes, $site['meta']);
+		print_r($this->includes);
 		$h->begin([
 			'title'=>$site['meta']['title'],
 			'includes'=>$this->includes,
