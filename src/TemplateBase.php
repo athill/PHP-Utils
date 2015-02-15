@@ -23,6 +23,8 @@ class TemplateBase {
 				
 			}
 		}
+		echo 'here:::';
+		print_r($site['jsModules']);
 		//// add module files to includes
 		$jsModuleManager = new \Athill\Utils\JsModuleManager($jsModules);
 		foreach ($site['jsModules'] as $id => $include) {
