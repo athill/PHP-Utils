@@ -28,7 +28,7 @@ class DefaultTemplate extends \Athill\Utils\TemplateBase {
 		$rightsidebar = $site['layout']['rightsidebar'];
 		$contentcols = 12;
 		if (count($leftsidebar) > 0) {
-			$h->odiv('class=".col-md-2"');
+			$h->odiv('class="col-md-2"');
 			$contentcols -= 2;
 			$this->sidebar('left-sidebar', $leftsidebar);
 			$h->cdiv();
@@ -44,7 +44,7 @@ class DefaultTemplate extends \Athill\Utils\TemplateBase {
 		$rightsidebar = $site['layout']['rightsidebar'];
 		$h->cdiv('/#content');
 		if (count($rightsidebar) > 0) {
-			$h->odiv('class=".col-md-2"');
+			$h->odiv('class="col-md-2"');
 			$this->sidebar('right-sidebar', $rightsidebar);
 			$h->cdiv();
 		}
