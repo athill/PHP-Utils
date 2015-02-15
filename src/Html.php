@@ -172,7 +172,7 @@ class Html extends Xml {
 		);
 		$options = $this->extend($defaults, $options);
 		$this->meta(['charset'=>$options['charset']]);
-		$this->meta(['http-equiv'=>'X-UA-Compatible', 'content'=>$options['content']]);
+		$this->meta(['http-equiv'=>'X-UA-Compatible', 'content'=>$options['compatible']]);
 		
 		$metas = array('keywords', 'description', 'author', 'copyright', 'viewport');
 		foreach ($metas as $meta) {
