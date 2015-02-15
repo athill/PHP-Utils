@@ -24,7 +24,7 @@ class Page {
 			$templateClass = "Athill\\Utils\\Templates\\".$templateClass;
 			$this->template = new $templateClass();
 		}
-		$this->template->start();
+		$this->template->begin();
 	}
 
 	public function end() {

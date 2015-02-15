@@ -139,7 +139,11 @@ class Html extends Xml {
 		$this->obody($bodyatts);
 	}
 
-	public function start() {
+	public function begin($headCallback, $options=array()) {
+		$defaults = array(
+			'bodyatts'=>''
+
+		);
 		$this->tnl('<!DOCTYPE html>');
 		$this->otag('html', 'lang="en"', false);		
 	}

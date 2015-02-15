@@ -60,22 +60,22 @@ class TemplateBase {
 		$this->includes = array_merge($this->includes, $files);
 	}
 
-	protected function start() {
+	public function begin() {
 		global $h;
-		$h->start();
+		$h->begin();
 		$this->head();
 		$h->obody();
 		$this->heading();
 	}
 
-	protected function end() {
+	public function end() {
 		global $h;
 		$this->footer();
 		$h->end();
 
 	}
 
-	protected function head() {
+	public function head() {
 		global $h, $site;
 		$h->head($site['meta']['title'], $this->includes, $site['meta']);
 	}
