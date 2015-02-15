@@ -77,6 +77,14 @@ class Xml {
 		return $buf;
 	}
 
+	public function sb() {
+		$this->startBuffer();
+	}
+
+	public function eb() {
+		return $this->endBuffer();
+	}
+
 	/**
 	 * Returns value of XML tag, rather than outputting it, e.g., h.rtn('a', {href='index.cfm', display='Home'})
 	 */	
