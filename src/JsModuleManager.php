@@ -1,12 +1,14 @@
 <?php  namespace Athill\Utils;
+
 class JsModuleManager {
 	private $modules;
 
 	/**
 	 * Takes a json array of the form:
 	 * { "module-name": {
-	 *    "js": ["js-file1"], 
-	 *    "css": ["cssfile1"]    ////js/css entries are optional
+	 *    "root": 'path-to-files-root'	////optional
+	 *    "js": ["js-file1", ...], 
+	 *    "css": ["cssfile1", ...]    ////js/css entries are optional
 	 *   }, 
 	 *   ...
 	 * }
