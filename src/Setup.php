@@ -32,8 +32,8 @@ class Setup {
 		);
 		$defaults['pagetitle'] = $defaults['sitename'];
 		//// logging
-		$defaults['logger'] = new \Monolog\MonologLogger("Main");
-		$defaults['logger']->pushHandler(new MonologHandlerStreamHandler($defaults['fileroot'].'/logs/main.log'));
+		$defaults['logger'] = new \Monolog\Logger("Main");
+		$defaults['logger']->pushHandler(new \Monolog\Handler\StreamHandler($defaults['fileroot'].'/logs/main.log'));
 		//// menu
 		$menufile = $defaults['fileroot'].'/menu.json';
 		echo 'menufile; '.$menufile;
