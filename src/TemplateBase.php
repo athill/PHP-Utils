@@ -4,7 +4,8 @@ class TemplateBase {
 	protected $js=array();
 	protected $css = array();
 
-	protected $includes = array();
+	private $includes = array();
+	protected $jsModules = array();
 	private $menu;
 
 	function __construct() {
@@ -19,7 +20,7 @@ class TemplateBase {
 			//// if it's been set on page/directory, leave that setting.
 			if (!isset($site['jsModules'][$id])) {
 				//// otherwise, if it's in the template jsModules set to true, otherwise set to false
-				$site['jsModules'][$id] = in_array($id, $jsModules);
+				$site['jsModules'][$id] = in_array($id, $this->jsModules);
 				
 			}
 		}
