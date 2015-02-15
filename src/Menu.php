@@ -24,7 +24,7 @@ class Menu {
 				$breadcrumbs = $this->getBreadcrumb($entry);
 			}
 		}
-		if ($this->view == '/') {
+		if (dirname($this->view) == '/') {
 			return $breadcrumbs;
 		}
 		$buildpath = '';
