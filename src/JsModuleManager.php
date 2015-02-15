@@ -1,5 +1,5 @@
 <?php  namespace Athill\Utils;
-class JsModule {
+class JsModuleManager {
 	private $modules;
 
 	/**
