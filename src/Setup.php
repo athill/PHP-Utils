@@ -16,8 +16,8 @@ class Setup {
 	public function getDefaults() {
 		$self = $_SERVER['PHP_SELF'];
 		$defaults = array(
-			'webroot'=>'',
-			'fileroot'=>'',
+			'webroot'=>$this->basesettings['webroot'],
+			'fileroot'=>$this->basesettings['fileroot'],
 			'instance'=>'dev',
 			'instances'=>array('dev', 'prd'),
 			'sitename'=>'Hello World',
