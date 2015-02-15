@@ -80,6 +80,7 @@ class Menu {
 		$atts = ($options['currdepth'] == 0) ? $options['rootatts'] : '';
 		$h->otag('ul', $atts);
 		foreach ($options['menu'] as $entry) {
+			$h->pa($entry);
 			//// anchor tag
 			$atts = [];
 			if (isset($entry['target'])) {
@@ -106,7 +107,9 @@ class Menu {
 					'currdepth'=>$options['currdepth']+1,
 					'buildpath'=>$options['buildpath'].$entry['href']
 				]);
-				$this->getMenu($change);
+				$h->oli($link, $atts);
+				$this->renderMenu($change);
+				$h->cli();
 
 			} else {
 				$h->li($link, $atts);	
