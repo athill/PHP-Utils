@@ -31,8 +31,13 @@ class Setup {
 			'dir' => dirname($self),
 		);
 		$defaults['pagetitle'] = $defaults['sitename'];
+		//// logging
+		$defaults['logger'] = new MonologLogger("Main");
+		$defaults['logger']->pushHandler(new MonologHandlerStreamHandler($defaults['fileroot'].'/logs/main.log'));
+		//// menu
 		$menufile = $defaults['fileroot'].'/menu.json';
-		echo $menufile;
+		echo 'menufile; '.$menufile;
+		$defaults['logger']->info($menufile);
 		$defaults['menu'] = array();
 		if (file_exists($menufile)) {
 			echo 'in here';
@@ -53,7 +58,7 @@ class Setup {
 			'leftsidebar'=>[],
 			'rightsidebar'=>[],
 		);
-		$defaults['']
+
 		$utils = new \Athill\Utils\Utils();
 		//// override base settings
 		$defaults = $utils->extend($defaults, $this->basesettings);
