@@ -80,23 +80,18 @@ class TemplateBase {
 
 	}
 
-	public function beginRender() {
-
-	}
+	protected function beginRender() {}
 
 
 
-	function heading() {
+	protected function heading() {}
 
-	}
+	protected function beginLayout() {}
 
-	public function endRender() {
+	protected function endLayout() {}	
 
-	}
+	protected function footer() {}
 
-
-	function footer() {
-
-	}
+	protected function endRender() {}
 
 }

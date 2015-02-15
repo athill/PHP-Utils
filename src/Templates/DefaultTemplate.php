@@ -4,23 +4,33 @@ class DefaultTemplate extends \Athill\Utils\TemplateBase {
 
 	protected $jsModules = array('jquery', 'bootstrap');
 
-	public function beginRender() {
+	protected function beginRender() {
 		global $h;
 		$h->odiv('class="container"');
 	}
 
-	public function endRender() {
+	protected function endRender() {
 		global $h;
 		$h->cdiv('/.container');
 	}
 
-	public function heading() {
+	protected function heading() {
 		global $h, $site;
+		$h->oheader();
 		$h->h1($site['pagetitle']);
+		$h->cheader();
+	}
+
+	protected function beginLayout() {
+
+	}
+
+	protected function endLayout() {
+
 	}
 
 /*
-	public $bodyAtts = 'id="default" class="default"';	
+	protected $bodyAtts = 'id="default" class="default"';	
 	public $stylesheets = "/global/css/import.css,//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css";
 	public $scripts = "/global/js/jquery-1.9.1.min.js,/global/js/nav.js,/global/js/zebrarows.js";
 	protected $base;
