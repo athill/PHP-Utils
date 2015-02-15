@@ -7,7 +7,7 @@ $local = [
 	]
 ];
 
-$page = new \Athill\Utils\Page();
+$page = new \Athill\Utils\Page($local);
 
 $h->p('content');
 
