@@ -32,7 +32,7 @@ class Setup {
 		);
 		$defaults['pagetitle'] = $defaults['sitename'];
 		//// logging
-		$defaults['logger'] = new MonologLogger("Main");
+		$defaults['logger'] = new \Monolog\MonologLogger("Main");
 		$defaults['logger']->pushHandler(new MonologHandlerStreamHandler($defaults['fileroot'].'/logs/main.log'));
 		//// menu
 		$menufile = $defaults['fileroot'].'/menu.json';
