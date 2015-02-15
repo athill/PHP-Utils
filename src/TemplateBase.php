@@ -4,7 +4,7 @@ class TemplateBase {
 	protected $js=array();
 	protected $css = array();
 
-	private $includes = array();
+	protected $includes = array();
 	private $menu;
 
 	function __construct() {
@@ -38,6 +38,8 @@ class TemplateBase {
 		//// page/directory scripts and styles
 		$this->includes = array_merge($this->includes, $site['js']);
 		$this->includes = array_merge($this->includes, $site['css']);
+
+		print_r($this->includes);
 	}
 
 	private function addModuleFiles($module) {
