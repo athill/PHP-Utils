@@ -173,7 +173,7 @@ class Html extends Xml {
 		
 		$metas = array('keywords', 'description', 'author', 'copyright', 'viewport');
 		foreach ($metas as $meta) {
-			if ($options['meta'] != "") {
+			if ($options[$meta] != "") {
 				// $this->meta('name="'.$meta.'" content="'.$options[$meta].'"');
 				$this->meta(['name'=>$meta, 'content'=>$options[$meta]]);
 			}
