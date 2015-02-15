@@ -14,6 +14,7 @@ class Setup {
 	}
 
 	public function getDefaults() {
+		$self = $_SERVER['PHP_SELF'];
 		$defaults = array(
 			'webroot'=>'',
 			'fileroot'=>'',
@@ -25,14 +26,13 @@ class Setup {
 			'jsModules'=>array(),
 			'classpath'=>'/classes',
 			'template'=>'default',
-			'view' => $_SERVER['PHP_SELF'],
-			'filename' => basename($_SERVER['PHP_SELF']),
-			'dir' => dirname($_SERVER['PHP_SELF']),
-
-
+			'view' => $self,
+			'filename' => basename($self),
+			'dir' => dirname($self),
 		);
 		$defaults['pagetitle'] = $defaults['sitename'];
 		$menufile = $defaults['fileroot'].'/menu.json';
+		echo $menufile;
 		$defaults['menu'] = array();
 		if (file_exists($menufile)) {
 			echo 'in here';
@@ -53,6 +53,7 @@ class Setup {
 			'leftsidebar'=>[],
 			'rightsidebar'=>[],
 		);
+		$defaults['']
 		$utils = new \Athill\Utils\Utils();
 		//// override base settings
 		$defaults = $utils->extend($defaults, $this->basesettings);
