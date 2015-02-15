@@ -173,7 +173,10 @@ class Html extends Xml {
 		
 		$metas = array('keywords', 'description', 'author', 'copyright', 'viewport');
 		foreach ($metas as $meta) {
-			$this->meta('name="'.$meta.'" content="'.$options[$meta].'"');
+			if ($options['meta'] != "") {
+				// $this->meta('name="'.$meta.'" content="'.$options[$meta].'"');
+				$this->meta(['name'=>$meta, 'content'=>$options[$meta]]);
+			}
 		}
 		if ($options['icon'] != '')	{
 			$options['icon'] = $this->fixLink($options['icon']);
