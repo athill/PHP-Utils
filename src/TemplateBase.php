@@ -3,10 +3,9 @@
 class TemplateBase {
 	protected $js=array();
 	protected $css = array();
-	protected $jsModules = array();
 
 	private $includes = array();
-	private $jsModule;
+	private $menu;
 
 	function __construct() {
 		global $site;
@@ -20,7 +19,7 @@ class TemplateBase {
 			//// if it's been set on page/directory, leave that setting.
 			if (!isset($site['jsModules'][$id])) {
 				//// otherwise, if it's in the template jsModules set to true, otherwise set to false
-				$site['jsModules'][$id] = in_array($id, $this->jsModules);
+				$site['jsModules'][$id] = in_array($id, $jsModules);
 				
 			}
 		}
@@ -80,6 +79,26 @@ class TemplateBase {
 
 	}
 
+	protected function sidebar($id, $items) {
+		global $h;
+		$h->oaside('id="'$id'" class="sidebar"');
+		foreach ($items as $item) {
+			switch ($item['type']) {
+				case 'content':
+					$h->section($item['content'], 'class="sidebar-section"');
+					break;
+				case 'menu':
+
+					break;
+			}
+		}
+		$h->caside('./'.$id);
+	}
+
+	protected function renderMenu($options=array()) {
+
+	}
+
 	protected function beginRender() {}
 
 
@@ -87,6 +106,10 @@ class TemplateBase {
 	protected function heading() {}
 
 	protected function beginLayout() {}
+
+	protected function leftSidebar() {}
+
+	protected function rightSidebar() {}
 
 	protected function endLayout() {}	
 

@@ -49,8 +49,8 @@ class Setup {
 		  'title'=>$defaults['sitename']
 		);
 		$defaults['layout'] = array(
-			'leftsidebar'=>'',
-			'rightsidebar'=>'',
+			'leftsidebar'=>[],
+			'rightsidebar'=>[],
 		);
 		$utils = new \Athill\Utils\Utils();
 		//// override base settings

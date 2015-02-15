@@ -22,11 +22,33 @@ class DefaultTemplate extends \Athill\Utils\TemplateBase {
 	}
 
 	protected function beginLayout() {
-
+		global $site, $h;
+		$h->odiv('id="layout" class="row"');
+		$leftsidebar = $site['layout']['leftsidebar'];
+		$rightsidebar = $site['layout']['rightsidebar'];
+		$contentcols = 8;
+		if (count($leftsidebar) > 0) {
+			$h->odiv('class=".col-md-2"');
+			$contentcols -= 2;
+			$this->sidebar('left-sidebar', $leftsidebar);
+			$h->cdiv();
+		}
+		if (count($rightsidebar) > 0) {
+			$contentcols -= 2;
+		}
+		$h->odiv('id="content" class="/col-md-'.$contentcols.'"');
 	}
 
 	protected function endLayout() {
-
+		global $site, $h;
+		$rightsidebar = $site['layout']['rightsidebar'];
+		$h->cdiv('/#content');
+		if (count($rightsidebar) > 0) {
+			$h->odiv('class=".col-md-2"');
+			$this->sidebar('right-sidebar', $rightsidebar);
+			$h->cdiv();
+		}
+		$h->cdiv('#layout');
 	}
 
 /*
