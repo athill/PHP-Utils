@@ -52,6 +52,7 @@ class TemplateBase {
 	}
 
 	private function addFiles($root, $files) {
+		echo 'adding files';
 		if ($root != '') {
 			$files = array_map(function($file) use($root) {
 				return $root.$file;
