@@ -142,7 +142,6 @@ class Html extends Xml {
 	public function begin($options=array()) {
 		$defaults = array(
 			'bodyatts'=>'',
-			'headcallback'=>null,
 			'title'=>'',
 			'includes'=>array(),
 			'headoptions'=>array()
@@ -150,9 +149,7 @@ class Html extends Xml {
 		$options = $this->extend($defaults, $options);
 		$this->tnl('<!DOCTYPE html>');
 		$this->otag('html', 'lang="en"', false);
-		if (is_null($options['headcallback'])) {
-			$this->head($options['title'], $options['includes'], $options['headoptions']);
-		}
+		$this->head($options['title'], $options['includes'], $options['headoptions']);
 		$this->obody($options['bodyatts']);
 	}
 
