@@ -35,6 +35,7 @@ class Setup {
 		$menufile = $defaults['fileroot'].'/menu.json';
 		$defaults['menu'] = array();
 		if (file_exists($menufile)) {
+			echo 'in here';
 			$defaults['menu'] = json_decode(file_get_contents($menufile), true);
 		}
 		$defaults['meta'] = array(
