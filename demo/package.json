@@ -1,0 +1,17 @@
+{
+  "name": "demo",
+  "version": "1.0.0",
+  "description": "demo for php-utils",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "andy hill",
+  "license": "apache-2",
+  "devDependencies": {
+    "gulp": "^3.8.11",
+    "gulp-less": "^3.0.0",
+    "gulp-watch": "^4.1.1",
+    "less": "^2.4.0"
+  }
+}
