@@ -69,10 +69,12 @@ class TemplateBase {
 		]);
 		$this->beginRender();
 		$this->heading();
+		$this->beginLayout();
 	}
 
 	public function end() {
 		global $h;
+		$this->endLayout();
 		$this->footer();
 		$this->endRender();
 		$h->end();
