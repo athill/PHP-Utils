@@ -10,5 +10,7 @@ $local = [
 $page = new \Athill\Utils\Page($local);
 
 $h->p('content');
+$h->a('http://andyhill.us', 'andyhill.us');
+
 
 $page->end();

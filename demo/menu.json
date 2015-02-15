@@ -1,0 +1,25 @@
+[
+	{ "href": "/", "display": "Home" },
+	{ "href": "/about/", "display": "About Us" },
+	{ "href": "/nested/", "display": "Nested", 
+		"children": [
+			{ "href": "nest1/", "display": "Nest 1" },
+			{ "href": "nest2/", "display": "Nest 2", 
+				"children": [
+					{ "href": "nest2.1/", "display": "Nest 2.1" },
+					{ "href": "nest2.2/", "display": "Nest 2.2", 
+						"children": [
+							{ "href": "nest2.2.1.php", "display": "Nest 2.2.1" },
+							{ "href": "nest2.2.2.php", "display": "Nest 2.2.2" },
+							{ "href": "nest2.2.3.php", "display": "Nest 2.2.3" }
+						]
+					},
+					{ "href": "nest2.3/", "display": "Nest 2.3" }
+				]
+			},
+
+			{ "href": "nest3/", "display": "Nest 3" }
+		]
+	},
+	{ "href": "/admin/", "display": "Administration", "menu": false }
+]
