@@ -61,7 +61,8 @@ class Menu {
 
 	private function getBreadcrumb($entry, $buildpath='') {
 		print_r($entry);
-		return ['href'=>$buildpath.$entry['href'], 'display'=>$entry['display']];
+		$href = $buildpath.$entry['href'];
+		return ['href'=>$href, 'display'=>$entry['display']];
 	}
 
 	public function renderMenu($options=[]) {
