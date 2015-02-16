@@ -62,6 +62,7 @@ class Menu {
 	}
 
 	private function getBreadcrumb($entry, $buildpath='') {
+		echo 'in gbc';
 		var_dump($entry);
 		$href = $buildpath.$entry['href'];
 		return ['href'=>$href, 'display'=>$entry['display']];
