@@ -9,7 +9,8 @@ class Page {
 		$site = array_merge_recursive($site, $options);
 		////Template
 		$templateClass = ucfirst($site['template']).'Template';
-		$localTemplatePath = $site['classpath'].'/Templates/'.$templateClass.'.php';
+		$localTemplatePath = $site['fileroot'].$site['classpath'].'/Templates/'.$templateClass.'.php';
+		// echo 'tc: '.$localTemplatePath;
 		if (file_exists($localTemplatePath.'.php')) {
 			require($localTemplatePath);
 			$this->template = new $templateClass();
