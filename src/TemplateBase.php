@@ -10,7 +10,10 @@ class TemplateBase {
 
 	function __construct() {
 		global $site;
+		$this->menu = new MenuUtils();
+		/////////
 		//// jsModules
+		/////////
 		$jsModuleFile = $site['fileroot'].'/jsmodules.php';
 		$jsModules = (file_exists($jsModuleFile)) ?
 			require($jsModuleFile) :

@@ -29,6 +29,7 @@ class Setup {
 			'view' => $self,
 			'filename' => basename($self),
 			'dir' => dirname($self),
+			'pagetitle'=>null
 		);
 		
 		//// logging
@@ -40,11 +41,7 @@ class Setup {
 		$defaults['menu'] = array();
 		if (file_exists($menufile)) {
 			$defaults['menu'] = json_decode(file_get_contents($menufile), true);
-		}
-		$defaults['menuutils'] = new MenuUtils();
-		$defaults['breadcrumbs'] = $defaults['menuutils']->getBreadcrumbs();
-		
-		$defaults['pagetitle'] = $defaults['sitename'];
+		}		
 		$defaults['meta'] = array(
 		  'description' => $defaults['sitename'],
 		  'keywords' => implode(',', explode(' ', $defaults['sitename'])),
