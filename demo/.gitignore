@@ -1,9 +1,0 @@
-node_modules/
-vendor/
-bower_components/
-logs/
-composer.lock
-.env.*.php
-.env.php
-.DS_Store
-Thumbs.db
