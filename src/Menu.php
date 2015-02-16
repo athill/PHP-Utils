@@ -88,7 +88,6 @@ class Menu {
 			$href = (isset($entry['redirect'])) ? 
 				$entry['redirect'] : 
 				$options['buildpath'].$entry['href'];
-			$link = $h->rtn('a', [$href, $entry['display'], $atts]);
 			//// list item tag
 			$highlight = false;
 			$atts = [];
@@ -106,18 +105,20 @@ class Menu {
 					'currdepth'=>$options['currdepth']+1,
 					'buildpath'=>$options['buildpath'].$entry['href']
 				]);
-				$h->oli($link, $atts);
+				$h->oli($atts);
+				$h->a($href, $entry['display'], $atts);
 				$this->renderMenu($change);
 				$h->cli();
 
 			} else {
+				$link = $h->rtn('a', [$href, $entry['display'], $atts]);
 				$h->li($link, $atts);	
 			}
 		}
 		$h->ctag('ul');
-
-
 	}
+
+	
 	 	
 //  	/**
 // 	 * Simple Xml Object
