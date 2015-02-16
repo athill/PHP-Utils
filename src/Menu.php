@@ -39,7 +39,7 @@ class Menu {
 				return $breadcrumbs;
 				
 			}
-			foreach ($menu as $entry) {
+			foreach ($menu as $i => $entry) {
 				if ($entry['href'] == '/') {
 					continue;
 				}
