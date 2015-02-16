@@ -60,7 +60,7 @@ class Menu {
 	}
 
 	private function getBreadcrumb($entry, $buildpath='') {
-		print_r($entry);
+		var_dump($entry);
 		$href = $buildpath.$entry['href'];
 		return ['href'=>$href, 'display'=>$entry['display']];
 	}
@@ -73,10 +73,9 @@ class Menu {
 			'start'=>'',
 			'rootatts'=>'',
 			'highlightclass'=>'active',
-			//// these change with iteration
+			//// these change with recursion
 			'menu'=>$this->menu,
 			'currdepth' => 0,
-			
 			'buildpath'=>''
 		];
 		$options = $h->extend($defaults, $options);
