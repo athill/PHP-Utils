@@ -47,7 +47,7 @@ class Menu {
 				if (strpos($this->view, $testpath) === 0) {
 					echo 'in loop';
 					var_dump($entry);
-					$breadcrumbs[] = $this->getBreadcrumb($buildpath, $entry);
+					$breadcrumbs[] = $this->getBreadcrumb($entry, $buildpath);
 					$buildpath = $testpath;
 					if ($buildpath == $this->view) {
 						return $breadcrumbs;
