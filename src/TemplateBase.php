@@ -1,19 +1,25 @@
 <?php namespace Athill\Utils;
 
 class TemplateBase {
-	protected $js=array();
-	protected $css = array();
-	protected $jsModules = array();
-
+	//// override these
+	protected $jsModules = [];	
+	protected $js = [];
+	protected $css = [];
+	
 	private $includes = array();
-	protected $menu;
-
-
+	
+	protected $menuUtils;
+	protected $breadcrumbs;
 
 	function __construct() {
 		global $site;
-		$this->menu = new MenuUtils();
-
+		$this->menuUtils = new MenuUtils();
+		$this->breadcrumbs = $this->menuUtils->getBreadcrumbs();
+		$lastcrumb = $this->breadcrumbs[count($this->breadcrumbs) - 1];
+		$pagetitle = $lastcrumb['display'];
+		if (is_null($site['pagetitle'])) {
+			$site['pagetitle'] = $pagetitle;
+		}
 		/////////
 		//// jsModules
 		/////////
