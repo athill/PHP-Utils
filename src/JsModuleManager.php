@@ -25,32 +25,5 @@ class JsModuleManager {
 		} else {
 			throw new Exception('Undefined module '.$id);
 		}
-	}
-
-	public function modify ($mods,$action) {
-		global $site;
-		foreach ($mods as $module) {
-			if (array_key_exists($module, $site['jsModules'])) {
-				
-				$site['jsModules'][$module] = $action;
-			} else {
-				$error = 'Undefined module in JsModule:modify()';
-				throw  new Exception($error);
-			} 
-		}
-	}
-		
-	
-	public function add($mod) {
-		$this->modify($mod, true);
-		
-	}
-	
-	public function remove($mod) {
-		$this->modify($mod, false);
 	}	
-
 }
-
-
-?>

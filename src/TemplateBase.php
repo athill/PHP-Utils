@@ -104,9 +104,11 @@ class TemplateBase {
 
 	protected function beginRender() {}
 
-
-
 	protected function heading() {}
+
+	protected function topMenu() {}
+
+	protected function breadcrumbs() {}
 
 	protected function beginLayout() {}
 

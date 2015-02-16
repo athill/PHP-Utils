@@ -1,13 +1,6 @@
 <?php  namespace Athill\Utils;
-/**
- * XML menu interface
- * @author andy hill 1 2009
- * @version 1.0
- *
- */
 
-
-class Menu {
+class MenuUtils {
 	private $menu;
 	private $view;
 

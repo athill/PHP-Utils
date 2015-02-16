@@ -30,7 +30,7 @@ class Setup {
 			'filename' => basename($self),
 			'dir' => dirname($self),
 		);
-		$defaults['pagetitle'] = $defaults['sitename'];
+		
 		//// logging
 		$defaults['logger'] = new \Monolog\Logger("Main");
 		$defaults['logger']->pushHandler(new \Monolog\Handler\StreamHandler($defaults['fileroot'].'/logs/main.log'));
@@ -41,6 +41,10 @@ class Setup {
 		if (file_exists($menufile)) {
 			$defaults['menu'] = json_decode(file_get_contents($menufile), true);
 		}
+		$defaults['menuutils'] = new MenuUtils();
+		$defaults['breadcrumbs'] = $defaults['menuutils']->getBreadcrumbs();
+		
+		$defaults['pagetitle'] = $defaults['sitename'];
 		$defaults['meta'] = array(
 		  'description' => $defaults['sitename'],
 		  'keywords' => implode(',', explode(' ', $defaults['sitename'])),
