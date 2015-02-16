@@ -19,10 +19,10 @@ class Menu {
 	}
 
 	public function getBreadcrumbs() {
-		$breadcrumbs = ['href'=>'/', 'display'=>'Home'];
+		$breadcrumbs = [['href'=>'/', 'display'=>'Home']];
 		foreach ($this->menu as $entry) {
 			if ($entry['href'] == '/') {
-				$breadcrumbs = $this->getBreadcrumb($entry);
+				$breadcrumbs = [$this->getBreadcrumb($entry)];
 			}
 		}
 		if (dirname($this->view) == '/') {
