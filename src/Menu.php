@@ -15,6 +15,7 @@ class Menu {
 		global $site;
 		$this->menu = $site['menu'];
 		$this->view = ($view != '') ? $view : $site['view'];
+		$this->logger = $site['logger'];
 	}
 
 	public function getBreadcrumbs() {
@@ -59,6 +60,7 @@ class Menu {
 	}
 
 	private function getBreadcrumb($entry, $buildpath='') {
+		print_r($entry);
 		return ['href'=>$buildpath.$entry['href'], 'display'=>$entry['display']];
 	}
 
@@ -118,7 +120,7 @@ class Menu {
 		$h->ctag('ul');
 	}
 
-	
+
 	 	
 //  	/**
 // 	 * Simple Xml Object
