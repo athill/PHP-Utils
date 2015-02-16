@@ -43,9 +43,10 @@ class TemplateBase {
 
 	private function addModuleFiles($module) {
 		$filetypes = array('js', 'css');
+		$root = (isset($module['root'])) ? $module['root'] : '';
 		foreach ($filetypes as $filetype) {
 			if (isset($module[$filetype])) {
-				$this->addFiles($module['root'], $module[$filetype]);
+				$this->addFiles($root, $module[$filetype]);
 			}
 		}	
 	}
