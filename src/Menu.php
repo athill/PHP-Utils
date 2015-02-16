@@ -85,6 +85,9 @@ class Menu {
 		$atts = ($options['currdepth'] == 0) ? $options['rootatts'] : '';
 		$h->otag('ul', $atts);
 		foreach ($options['menu'] as $entry) {
+			if (isset($entry['menu']) && !$entry['menu']) {
+				continue;
+			}
 			//// anchor tag
 			$atts = [];
 			if (isset($entry['target'])) {
