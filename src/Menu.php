@@ -45,8 +45,8 @@ class Menu {
 				}
 				$testpath = $buildpath.$entry['href'];
 				if (strpos($this->view, $testpath) === 0) {
-					echo 'in loop';
-					var_dump($entry);
+					// echo 'in loop';
+					// var_dump($entry);
 					$breadcrumbs[] = $this->getBreadcrumb($entry, $buildpath);
 					$buildpath = $testpath;
 					if ($buildpath == $this->view) {
@@ -62,8 +62,8 @@ class Menu {
 	}
 
 	private function getBreadcrumb($entry, $buildpath='') {
-		echo 'in gbc';
-		var_dump($entry);
+		// echo 'in gbc';
+		// var_dump($entry);
 		$href = $buildpath.$entry['href'];
 		return ['href'=>$href, 'display'=>$entry['display']];
 	}
