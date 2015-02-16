@@ -17,6 +17,10 @@ class TemplateBase {
 		$this->breadcrumbs = $this->menuUtils->getBreadcrumbs();
 		$lastcrumb = $this->breadcrumbs[count($this->breadcrumbs) - 1];
 		$pagetitle = $lastcrumb['display'];
+		//// TODO: allow formatting (sprintf) to determine e.g., sitename - pagetitle
+		if (is_null($site['layout']['title'])) {
+			$site['layout']['title'] = $pagetitle;
+		}		
 		if (is_null($site['pagetitle'])) {
 			$site['pagetitle'] = $pagetitle;
 		}

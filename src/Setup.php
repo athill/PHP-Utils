@@ -51,7 +51,7 @@ class Setup {
 		  'compatible'=>'IE=edge,chrome=1',
 		  'viewport'=>'width=device-width',
 		  'charset'=>'uft-8',
-		  'title'=>$defaults['sitename']
+		  'title'=>null
 		);
 		$defaults['layout'] = array(
 			'leftsidebar'=>[],
