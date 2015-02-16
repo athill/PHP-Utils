@@ -14,7 +14,6 @@ class Menu {
 	function __construct($view='') {
 		global $site;
 		$this->menu = $site['menu'];
-		print_r($this->menu);
 		$this->view = ($view != '') ? $view : $site['view'];
 	}
 
@@ -81,7 +80,6 @@ class Menu {
 		$atts = ($options['currdepth'] == 0) ? $options['rootatts'] : '';
 		$h->otag('ul', $atts);
 		foreach ($options['menu'] as $entry) {
-			$h->pa($entry);
 			//// anchor tag
 			$atts = [];
 			if (isset($entry['target'])) {

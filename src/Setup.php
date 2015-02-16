@@ -36,11 +36,9 @@ class Setup {
 		$defaults['logger']->pushHandler(new \Monolog\Handler\StreamHandler($defaults['fileroot'].'/logs/main.log'));
 		//// menu
 		$menufile = $defaults['fileroot'].'/menu.json';
-		echo 'menufile; '.$menufile;
-		$defaults['logger']->info($menufile);
+		// $defaults['logger']->info($menufile);
 		$defaults['menu'] = array();
 		if (file_exists($menufile)) {
-			echo 'in here';
 			$defaults['menu'] = json_decode(file_get_contents($menufile), true);
 		}
 		$defaults['meta'] = array(
