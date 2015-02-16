@@ -39,12 +39,14 @@ class Menu {
 				return $breadcrumbs;
 				
 			}
-			foreach ($menu as $i => $entry) {
+			foreach ($menu as $entry) {
 				if ($entry['href'] == '/') {
 					continue;
 				}
 				$testpath = $buildpath.$entry['href'];
 				if (strpos($this->view, $testpath) === 0) {
+					echo 'in loop';
+					var_dump($entry);
 					$breadcrumbs[] = $this->getBreadcrumb($buildpath, $entry);
 					$buildpath = $testpath;
 					if ($buildpath == $this->view) {
