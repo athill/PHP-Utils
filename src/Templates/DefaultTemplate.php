@@ -15,7 +15,7 @@ class DefaultTemplate extends \Athill\Utils\TemplateBase {
 	protected function heading() {
 		global $h, $site;
 		$h->oheader();
-		$h->h1($site['sitetitle']);
+		$h->h1($site['sitename']);
 		$h->cheader();
 	}
 
