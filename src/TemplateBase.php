@@ -6,11 +6,14 @@ class TemplateBase {
 	protected $jsModules = array();
 
 	private $includes = array();
-	private $menu;
+	protected $menu;
+
+
 
 	function __construct() {
 		global $site;
 		$this->menu = new MenuUtils();
+
 		/////////
 		//// jsModules
 		/////////
