@@ -11,7 +11,7 @@ class Page {
 		$templateClass = ucfirst($site['template']).'Template';
 		$localTemplatePath = $site['fileroot'].$site['classpath'].'/Templates/'.$templateClass.'.php';
 		echo 'tc: '.$localTemplatePath;
-		if (file_exists($localTemplatePath.'.php')) {
+		if (file_exists($localTemplatePath)) {
 			echo 'in here';
 			require($localTemplatePath);
 			$this->template = new $templateClass();
