@@ -17,13 +17,15 @@ class TemplateBase {
 		$this->breadcrumbs = $this->menuUtils->getBreadcrumbs();
 		$lastcrumb = $this->breadcrumbs[count($this->breadcrumbs) - 1];
 		$pagetitle = $lastcrumb['display'];
-		//// TODO: allow formatting (sprintf) to determine e.g., sitename - pagetitle
-		if (is_null($site['meta']['title'])) {
-			$site['meta']['title'] = $pagetitle;
-		}		
+		//// TODO: allow formatting (sprintf) to determine e.g., sitename - pagetitle		
 		if (is_null($site['pagetitle'])) {
 			$site['pagetitle'] = $pagetitle;
 		}
+		if (is_null($site['meta']['title'])) {
+			$format = $site['meta']['titleformat'][0];
+			$args = array_slice($site['meta']['titleformat'], 1);
+			$site['meta']['title'] = vsprintf($format, $args);
+		}		
 		/////////
 		//// jsModules
 		/////////

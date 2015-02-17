@@ -29,12 +29,16 @@ class Setup {
 			'view' => $self,
 			'filename' => basename($self),
 			'dir' => dirname($self),
-			'pagetitle'=>null
+			'pagetitle'=>null,
 		);
 		
 		//// logging
-		$defaults['logger'] = new \Monolog\Logger("Main");
-		$defaults['logger']->pushHandler(new \Monolog\Handler\StreamHandler($defaults['fileroot'].'/logs/main.log'));
+		if (isset($this->basesettings['logger'])) {
+			$defaults['logger'] = $this->basesettings['logger'];
+		} else {
+			$defaults['logger'] = new \Monolog\Logger("Main");
+			$defaults['logger']->pushHandler(new \Monolog\Handler\StreamHandler($defaults['fileroot'].'/logs/main.log'));
+		}
 		//// menu
 		$menufile = $defaults['fileroot'].'/menu.json';
 		// $defaults['logger']->info($menufile);
@@ -51,8 +55,12 @@ class Setup {
 		  'compatible'=>'IE=edge,chrome=1',
 		  'viewport'=>'width=device-width',
 		  'charset'=>'uft-8',
-		  'title'=>null
+		  'title'=>null,
+		  'titleformat'=>null
 		);
+		if (is_null($defaults['meta']['titleformat'])) {
+			$defaults['meta']['titleformat'] = ['%s - %s', 'sitename', 'pagetitle']
+		}
 		$defaults['layout'] = array(
 			'leftsidebar'=>[],
 			'rightsidebar'=>[],
