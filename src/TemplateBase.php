@@ -24,9 +24,10 @@ class TemplateBase {
 		if (is_null($site['meta']['title'])) {
 			$format = $site['meta']['titleformat'][0];
 			$args = array_slice($site['meta']['titleformat'], 1);
-			$args = array_map($args, function($arg) use ($site) {
+			$args = array_map(function($arg) use ($site) {
 				return $site[$arg];
-			});
+			},
+			$args);
 			$site['meta']['title'] = vsprintf($format, $args);
 		}		
 		/////////
