@@ -41,11 +41,11 @@ class Setup {
 		}
 		//// menu
 		$menufile = $defaults['fileroot'].'/menu.json';
-		// $defaults['logger']->info($menufile);
 		$defaults['menu'] = array();
 		if (file_exists($menufile)) {
 			$defaults['menu'] = json_decode(file_get_contents($menufile), true);
-		}		
+		}
+		//// meta info to be passed to head tag
 		$defaults['meta'] = array(
 		  'description' => $defaults['sitename'],
 		  'keywords' => implode(',', explode(' ', $defaults['sitename'])),
@@ -59,8 +59,9 @@ class Setup {
 		  'titleformat'=>null
 		);
 		if (is_null($defaults['meta']['titleformat'])) {
-			$defaults['meta']['titleformat'] = ['%s - %s', 'sitename', 'pagetitle']
+			$defaults['meta']['titleformat'] = ['%s - %s', 'sitename', 'pagetitle'];
 		}
+		//// page layout
 		$defaults['layout'] = array(
 			'leftsidebar'=>[],
 			'rightsidebar'=>[],
