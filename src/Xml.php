@@ -177,7 +177,7 @@ class Xml {
 	/**
 	 * Opens an XML Tag
 	 */
-	public function otag($type, $atts='', $indent=false) {
+	public function otag($type, $atts='', $indent=true) {
 		$atts = $this->fixAtts($atts);
 		$this->tnl('<'.$type.$atts.'>');
 		if ($indent) $this->tabs++;
@@ -186,7 +186,7 @@ class Xml {
 	/**
 	 * Closes an XML tag
 	 */
-	public function ctag($type, $indent=false, $comment='') {
+	public function ctag($type, $indent=true, $comment='') {
 		if ($indent) $this->tabs--;
 		$str = '</'.$type.'>';
 		if ($comment != '') $str .= ' <!-- '.$comment.' -->';

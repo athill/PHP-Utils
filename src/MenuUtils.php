@@ -25,6 +25,7 @@ class MenuUtils {
 		$menu = $this->menu;
 		$sanitycheck = 0;
 		while ($buildpath != $this->view) {
+			//// TODO: fix this
 			$sanitycheck++;
 			if ($sanitycheck == 100) {
 				//throw new Exception("Endless loop in getBreadcrumbs(): ".$this->view, 1);
