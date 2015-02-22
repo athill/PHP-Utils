@@ -164,14 +164,14 @@ class Html extends Xml {
 		  'icon'=>'',
 		  'compatible'=>'IE=edge,chrome=1',
 		  'viewport'=>'width=device-width',
-		  'charset'=>'uft-8',
+		  'charset'=>'utf-8',
 		  'extra'=>''
 		);
 		$options = $this->extend($defaults, $options);
 		$this->meta(['charset'=>$options['charset']]);
 		$this->meta(['http-equiv'=>'X-UA-Compatible', 'content'=>$options['compatible']]);
 		
-		$metas = array('keywords', 'description', 'author', 'copyright', 'viewport');
+		$metas = array('charset', 'keywords', 'description', 'author', 'copyright', 'viewport');
 		foreach ($metas as $meta) {
 			if ($options[$meta] != "") {
 				// $this->meta('name="'.$meta.'" content="'.$options[$meta].'"');

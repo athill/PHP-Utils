@@ -54,7 +54,7 @@ class Setup {
 		  'icon'=>'',
 		  'compatible'=>'IE=edge,chrome=1',
 		  'viewport'=>'width=device-width',
-		  'charset'=>'uft-8',
+		  'charset'=>'utf-8',
 		  'title'=>null,
 		  'titleformat'=>null
 		);
