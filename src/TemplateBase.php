@@ -105,7 +105,7 @@ class TemplateBase {
 	}
 
 	protected function sidebar($id, $items) {
-		global $h;
+		global $site, $h;
 		$h->oaside('id="'.$id.'" class="sidebar"');
 		foreach ($items as $item) {
 			switch ($item['type']) {
@@ -113,7 +113,9 @@ class TemplateBase {
 					$h->section($item['content'], 'class="sidebar-section"');
 					break;
 				case 'menu':
-
+					$site['menuUtils']->renderMenu([
+						'start'=>dirname($site['view']);
+					]);
 					break;
 			}
 		}

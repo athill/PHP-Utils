@@ -72,8 +72,15 @@ class MenuUtils {
 			'currdepth' => 0,
 			'buildpath'=>''
 		];
+
 		$options = $h->extend($defaults, $options);
 		$atts = ($options['currdepth'] == 0) ? $options['rootatts'] : '';
+		if ($options['currdepth'] == 0) {
+			if ($options['start'] !== '') {
+				$options['menu'] = $this->getSubMenu($options['start']);
+				$options['buildpath'] = $options['start'];
+			}
+		}
 		$h->otag('ul', $atts);
 		foreach ($options['menu'] as $entry) {
 			if (isset($entry['menu']) && !$entry['menu']) {
