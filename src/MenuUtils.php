@@ -121,7 +121,7 @@ class MenuUtils {
 		global $h;
 		$defaults = [
 			'buildpath'=>'',
-			'menu'=>$this->menu;
+			'menu'=>$this->menu
 		];
 		$options = $h->extend($defaults, $options); 
 		for ($options['menu'] as $entry) {
