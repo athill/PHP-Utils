@@ -29,7 +29,6 @@ class MenuUtils {
 			//// TODO: fix this
 			$sanitycheck++;
 			if ($sanitycheck == 500) {
-				//throw new Exception("Endless loop in getBreadcrumbs(): ".$this->view, 1);
 				$site['logger']->error('fail in getBreadcrumbs(): '.$buildpath.' - '.$this->view.' - '.$sanitycheck);
 				echo 'sanity fail';
 				return $breadcrumbs;
@@ -56,8 +55,6 @@ class MenuUtils {
 	}
 
 	private function getBreadcrumb($entry, $buildpath='') {
-		// echo 'in gbc';
-		// var_dump($entry);
 		$href = $buildpath.$entry['href'];
 		return ['href'=>$href, 'display'=>$entry['display']];
 	}
@@ -129,10 +126,11 @@ class MenuUtils {
 			'currdepth' => 0,
 			'buildpath'=>''
 		];
+		$depth = $options['currdepth'];
 		$options = $h->extend($defaults, $options);
 		foreach ($options['menu'] as $entry) {
 			$href = $options['buildpath'].$entry['href'];
-			$depth = $options['currdepth'];
+			
 			if ($href != '/') {
 				$filepath = $site['fileroot'].$href;
 				if (file_exists($filepath)) {
@@ -140,14 +138,14 @@ class MenuUtils {
 				}
 				if (preg_match('/\.php$/', $href)) {
 					$site['logger']->info(' Creating file: '.$filepath);
-					$content = sprintf($options['template'], str_repeat('../', $depth+2));
+					$content = sprintf($options['template'], str_repeat('../', $depth));
 					file_put_contents($filepath, $content);
 				} else {
 					$site['logger']->info(' Creating directory: '.$filepath);
 					mkdir($filepath);
 					$index = $filepath.'index.php';
 					$site['logger']->info(' Creating file: '.$index);
-					$content = sprintf($options['template'], str_repeat('../', $depth+1));	
+					$content = sprintf($options['template'], str_repeat('../', $depth-1));	
 					file_put_contents($index, $content);
 					if (isset($entry['children'])) {
 						$change = $h->extend($options, [
