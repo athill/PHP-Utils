@@ -77,11 +77,12 @@ class MenuUtils {
 		$atts = ($options['currdepth'] == 0) ? $options['rootatts'] : '';
 		if ($options['currdepth'] == 0) {
 			if ($options['start'] !== '') {
+				$h->tbr($options['start']);
 				$options['menu'] = $this->getSubMenu($options['start']);
 				$options['buildpath'] = $options['start'];
 			}
 		}
-		$h->pa($options['menu']);
+		// $h->pa($options['menu']);
 		$h->otag('ul', $atts);
 		foreach ($options['menu'] as $entry) {
 			if (isset($entry['menu']) && !$entry['menu']) {
