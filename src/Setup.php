@@ -72,11 +72,10 @@ class Setup {
 		$defaults = $utils->extend($defaults, $this->basesettings);
 		//// override directory settings
 		$dirSettingsFile = $defaults['fileroot'].$defaults['dir'].'/directorySettings.php';
-		echo $dirSettingsFile;
 		if (file_exists($dirSettingsFile)) {
-			echo 'in here';
 			$dirSettings = require($dirSettingsFile);
 			$defaults = $utils->extend($defaults, $dirSettings);
+			print_r($defaults);
 		}
 		return $defaults;		
 	}
