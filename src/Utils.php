@@ -43,7 +43,6 @@ class Utils {
 		foreach ($defaults as $key => $value) {
 			if (array_key_exists($key, $options)) {
 				if (is_array($options[$key]) && $this->isAssoc($options[$key])) {
-					echo 'array: '.$key;
 					$defaults[$key] = $this->extend($defaults[$key], $options[$key]);
 				} else {
 					$defaults[$key] = $options[$key];
