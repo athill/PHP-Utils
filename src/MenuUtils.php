@@ -137,10 +137,12 @@ class MenuUtils {
 				if (file_exists($filepath)) {
 					continue;
 				}
+				//// file
 				if (preg_match('/\.php$/', $href)) {
 					$site['logger']->info(' Creating file: '.$filepath.' - '.$depth);
 					$content = sprintf($options['template'], str_repeat('../', $depth));
 					file_put_contents($filepath, $content);
+				//// directory
 				} else {
 					$site['logger']->info(' Creating directory: '.$filepath.' - '.$depth);
 					mkdir($filepath);
