@@ -152,7 +152,7 @@ class MenuUtils {
 						$change = $h->extend($options, [
 							'menu'=>$entry['children'],
 							'currdepth'=>$options['currdepth']+1,
-							'buildpath'=>$options['buildpath'].$entry['href']
+							'buildpath'=>$href
 						]);
 						$this->generateFileStructure($change);
 					} 					
