@@ -75,9 +75,7 @@ class Setup {
 		if (file_exists($dirSettingsFile)) {
 			$dirSettings = require($dirSettingsFile);
 			$defaults['jsModules'] = array_merge($defaults['jsModules'], $dirSettings['jsModules']);
-			print_r($dirSettings['jsModules']);
 			$defaults = $utils->extend($defaults, $dirSettings);
-			print_r($defaults['jsModules']);
 		}
 		return $defaults;		
 	}
