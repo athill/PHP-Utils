@@ -28,7 +28,7 @@ class MenuUtils {
 		while ($buildpath != $this->view) {
 			//// TODO: fix this
 			$sanitycheck++;
-			if ($sanitycheck == 100) {
+			if ($sanitycheck == 500) {
 				//throw new Exception("Endless loop in getBreadcrumbs(): ".$this->view, 1);
 				$site['logger']->error('fail in getBreadcrumbs(): '.$buildpath.' - '.$this->view.' - '.$sanitycheck);
 				echo 'sanity fail';
