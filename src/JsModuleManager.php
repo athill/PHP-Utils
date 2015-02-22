@@ -20,7 +20,7 @@ class JsModuleManager {
 	
 	
 	public function getModule($id) {
-		if (isset($this->modules[$id])) {
+		if (isset($this->modules['modules'][$id])) {
 			return $this->modules['modules'][$id];
 		} else {
 			throw new Exception('Undefined module '.$id);
