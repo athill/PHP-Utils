@@ -138,15 +138,15 @@ class MenuUtils {
 					continue;
 				}
 				if (preg_match('/\.php$/', $href)) {
-					$site['logger']->info(' Creating file: '.$filepath);
-					$content = sprintf($options['template'], str_repeat('../', $depth));
+					$site['logger']->info(' Creating file: '.$filepath.' - '.$depth);
+					$content = sprintf($options['template'], str_repeat('../', $depth+1));
 					file_put_contents($filepath, $content);
 				} else {
-					$site['logger']->info(' Creating directory: '.$filepath);
+					$site['logger']->info(' Creating directory: '.$filepath.' - '.$depth);
 					mkdir($filepath);
 					$index = $filepath.'index.php';
 					$site['logger']->info(' Creating file: '.$index);
-					$content = sprintf($options['template'], str_repeat('../', $depth-1));	
+					$content = sprintf($options['template'], str_repeat('../', $depth));	
 					file_put_contents($index, $content);
 					if (isset($entry['children'])) {
 						$change = $h->extend($options, [
