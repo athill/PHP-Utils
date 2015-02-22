@@ -30,7 +30,7 @@ class MenuUtils {
 			$sanitycheck++;
 			if ($sanitycheck == 100) {
 				//throw new Exception("Endless loop in getBreadcrumbs(): ".$this->view, 1);
-				$site['logger']->error('fail in getBreadcrumbs(): '.$buildpath.' - '.$this->view);
+				$site['logger']->error('fail in getBreadcrumbs(): '.$buildpath.' - '.$this->view.' - '.$sanitycheck);
 				echo 'sanity fail';
 				return $breadcrumbs;
 				
