@@ -123,6 +123,9 @@ class MenuUtils {
 			'buildpath'=>'',
 			'menu'=>$this->menu
 		];
+		if (!preg_match('/\/$/', $path)) {
+			$path .= '/';
+		}
 		$options = $h->extend($defaults, $options); 
 		foreach ($options['menu'] as $entry) {
 			if ($entry['href'] == '/') {
