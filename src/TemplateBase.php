@@ -113,9 +113,11 @@ class TemplateBase {
 					$h->section($item['content'], 'class="sidebar-section"');
 					break;
 				case 'menu':
+					$h->onav('id="sidebar-menu"');
 					$this->menuUtils->renderMenu([
 						'start'=>dirname($site['view'])
 					]);
+					$h->cnav('/#sidebar-menu');
 					break;
 			}
 		}
