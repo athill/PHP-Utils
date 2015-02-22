@@ -77,7 +77,6 @@ class MenuUtils {
 		$atts = ($options['currdepth'] == 0) ? $options['rootatts'] : '';
 		if ($options['currdepth'] == 0) {
 			if ($options['start'] !== '') {
-				$h->tbr($options['start'].' - '.$options['currdepth']);
 				$options['menu'] = $this->getSubMenu($options['start']);
 				$options['buildpath'] = $options['start'];
 			}
