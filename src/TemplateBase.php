@@ -38,7 +38,7 @@ class TemplateBase {
 			require($jsModuleFile) :
 			array();
 		//// determine which modules to include
-		foreach ($jsModules as $id => $data) {
+		foreach ($jsModules['sequence'] as $id) {
 			//// if it's been set on page/directory, leave that setting.
 			if (!isset($site['jsModules'][$id])) {
 				//// otherwise, if it's in the template jsModules set to true, otherwise set to false
