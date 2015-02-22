@@ -117,7 +117,7 @@ class MenuUtils {
 		$h->ctag('ul');
 	}
 
-	function generateFileStructure($options=[]) {
+	public function generateFileStructure($options=[]) {
 		global $h, $site;
 		$defaults = [
 			'template'=>'',
@@ -154,7 +154,7 @@ class MenuUtils {
 							'currdepth'=>$options['currdepth']+1,
 							'buildpath'=>$options['buildpath'].$entry['href']
 						]);
-						generateFileStructure($change);
+						$this->generateFileStructure($change);
 					} 					
 				}
 				
