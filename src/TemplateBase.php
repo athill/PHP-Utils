@@ -137,7 +137,22 @@ class TemplateBase {
 
 	protected function topMenu() {}
 
-	protected function breadcrumbs() {}
+	protected function breadcrumbs() {
+		// $h->pa($breadcrumbs);
+		$h->onav('id="breadcrumbs"');
+		$lastbc = count($this->breadcrumbs) - 1;
+		// $delim = '&gt;';
+		$h->otag('ul');
+		//// TODO: should this be a list? handled through js/css?
+		foreach ($this->breadcrumbs as $i => $breadcrumb){
+			if ($i == $lastbc) {
+				$h->li($breadcrumb['display']);
+			} else {
+				$h->li($h->rtn('a', [$breadcrumb['href'], $breadcrumb['display']]));
+			}
+		}
+		$h->ctag('ul');		
+	}
 
 	protected function beginLayout() {}
 
