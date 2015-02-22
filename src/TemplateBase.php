@@ -113,7 +113,7 @@ class TemplateBase {
 					$h->section($item['content'], 'class="sidebar-section"');
 					break;
 				case 'menu':
-					$site['menuUtils']->renderMenu([
+					$this->menuUtils->renderMenu([
 						'start'=>dirname($site['view'])
 					]);
 					break;
