@@ -81,6 +81,7 @@ class MenuUtils {
 				$options['buildpath'] = $options['start'];
 			}
 		}
+		$h->pa($options['menu']);
 		$h->otag('ul', $atts);
 		foreach ($options['menu'] as $entry) {
 			if (isset($entry['menu']) && !$entry['menu']) {
