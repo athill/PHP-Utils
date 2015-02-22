@@ -128,7 +128,7 @@ class MenuUtils {
 		];
 		
 		$options = $h->extend($defaults, $options);
-		$depth = $options['currdepth'];
+		$depth = $options['currdepth']+1;
 		foreach ($options['menu'] as $entry) {
 			$href = $options['buildpath'].$entry['href'];
 			
@@ -139,7 +139,7 @@ class MenuUtils {
 				}
 				if (preg_match('/\.php$/', $href)) {
 					$site['logger']->info(' Creating file: '.$filepath.' - '.$depth);
-					$content = sprintf($options['template'], str_repeat('../', $depth+1));
+					$content = sprintf($options['template'], str_repeat('../', $depth));
 					file_put_contents($filepath, $content);
 				} else {
 					$site['logger']->info(' Creating directory: '.$filepath.' - '.$depth);
