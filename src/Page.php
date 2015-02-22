@@ -6,9 +6,7 @@ class Page {
 	function __construct($options=array()) {
 		global $h, $site;
 		//// local options	
-		print_r($site['rightsidebar']);
 		$site = array_merge_recursive($site, $options);
-		print_r($site['rightsidebar']);
 		////Template
 		$templateClass = ucfirst($site['template']).'Template';
 		$localTemplatePath = $site['fileroot'].$site['classpath'].'/Templates/'.$templateClass.'.php';
