@@ -29,6 +29,7 @@ class MenuUtils {
 			$sanitycheck++;
 			if ($sanitycheck == 100) {
 				//throw new Exception("Endless loop in getBreadcrumbs(): ".$this->view, 1);
+				$site['logger']->error('fail in getBreadcrumbs(): '.$buildpath.' - '.$this->view);
 				echo 'sanity fail';
 				return $breadcrumbs;
 				
@@ -120,6 +121,49 @@ class MenuUtils {
 		$h->ctag('ul');
 	}
 
+	function generateFileStructure($options=[]) {
+		global $h, $site;
+		$defaults = [
+			'template'=>'',
+			//// these change with recursion
+			'menu'=>$this->menu,
+			'currdepth' => 0,
+			'buildpath'=>''
+		];
+		$options = $h->extend($defaults, $options);
+		foreach ($options['menu'] as $entry) {
+			$href = $options['buildpath'].$entry['href'];
+			$depth = $options['currdepth'];
+			if ($href != '/') {
+				$filepath = $site['fileroot'].$href;
+				if (file_exists($filepath)) {
+					continue;
+				}
+				if (preg_match('/\.php$/', $href)) {
+					$site['logger']->info(' Creating file: '.$filepath);
+					$content = sprintf($options['template'], str_repeat('../', $depth+2));
+					file_put_contents($filepath, $content);
+				} else {
+					$site['logger']->info(' Creating directory: '.$filepath);
+					mkdir($filepath);
+					$index = $filepath.'index.php';
+					$site['logger']->info(' Creating file: '.$index);
+					$content = sprintf($options['template'], str_repeat('../', $depth+1));	
+					file_put_contents($index, $content);
+					if (isset($entry['children'])) {
+						$change = $h->extend($options, [
+							'menu'=>$entry['children'],
+							'currdepth'=>$options['currdepth']+1,
+							'buildpath'=>$options['buildpath'].$entry['href']
+						]);
+						generateFileStructure($change);
+					} 					
+				}
+				
+			}
+
+		}
+	}	
 
 	 	
 //  	/**
