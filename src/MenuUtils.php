@@ -131,7 +131,7 @@ class MenuUtils {
 		
 		foreach ($options['menu'] as $entry) {
 			$href = $options['buildpath'].$entry['href'];
-			$depth = $options['currdepth']+1;	
+			$depth = $options['currdepth'];	
 			if ($href != '/') {
 				$filepath = $site['fileroot'].$href;
 				if (file_exists($filepath)) {
