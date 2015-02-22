@@ -41,11 +41,9 @@ class MenuUtils {
 				}
 				$testpath = $buildpath.$entry['href'];
 				if (strpos($this->view, $testpath) === 0) {
-					// echo 'in loop';
-					// var_dump($entry);
 					$breadcrumbs[] = $this->getBreadcrumb($entry, $buildpath);
 					$buildpath = $testpath;
-					if ($buildpath == $this->view || $buildpath == $this->view.'index.php') {
+					if (in_array($this->view, [$buildpath, $buildpath.'index.php'])) {
 						return $breadcrumbs;
 					}
 					if (isset($entry['children'])) {
