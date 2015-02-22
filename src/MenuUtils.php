@@ -124,7 +124,7 @@ class MenuUtils {
 			'menu'=>$this->menu
 		];
 		$options = $h->extend($defaults, $options); 
-		for ($options['menu'] as $entry) {
+		foreach ($options['menu'] as $entry) {
 			if ($entry['href'] == '/') {
 				continue;
 			}
