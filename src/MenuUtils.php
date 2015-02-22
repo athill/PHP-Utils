@@ -117,6 +117,31 @@ class MenuUtils {
 		$h->ctag('ul');
 	}
 
+	public function getSubMenu($path, $options=[]) {
+		global $h;
+		$defaults = [
+			'buildpath'=>'',
+			'menu'=>$this->menu;
+		];
+		$options = $h->extend($defaults, $options); 
+		for ($options['menu'] as $entry) {
+			if ($entry['href'] == '/') {
+				continue;
+			}
+			$testpath = $options['buildpath'].$entry['href'];
+			if (strpos($path, $testpath) === 0) {
+				$children = $entry['children'];
+				if ($path == $testpath) {
+					return $children;
+				} else {
+					return $this->getSubMenu($path, ['buildpath'=>$testpath, 'menu'=>$children]);
+
+				}
+			}
+		}
+		return $options['menu'];
+	}
+
 	public function generateFileStructure($options=[]) {
 		global $h, $site;
 		$defaults = [
