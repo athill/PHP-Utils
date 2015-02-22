@@ -115,7 +115,7 @@ class TemplateBase {
 				case 'menu':
 					$h->onav('id="sidebar-menu"');
 					$this->menuUtils->renderMenu([
-						'start'=>dirname($site['view'])
+						'start'=>dirname($site['view']).'/'
 					]);
 					$h->cnav('/#sidebar-menu');
 					break;
