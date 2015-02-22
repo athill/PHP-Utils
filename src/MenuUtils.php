@@ -12,6 +12,7 @@ class MenuUtils {
 	}
 
 	public function getBreadcrumbs() {
+		global $site;
 		$breadcrumbs = [['href'=>'/', 'display'=>'Home']];
 		foreach ($this->menu as $entry) {
 			if ($entry['href'] == '/') {
