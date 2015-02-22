@@ -138,7 +138,7 @@ class TemplateBase {
 	protected function topMenu() {}
 
 	protected function breadcrumbs() {
-		// $h->pa($breadcrumbs);
+		$h->pa($breadcrumbs);
 		$h->onav('id="breadcrumbs"');
 		$lastbc = count($this->breadcrumbs) - 1;
 		// $delim = '&gt;';
@@ -152,6 +152,7 @@ class TemplateBase {
 			}
 		}
 		$h->ctag('ul');		
+		$h->cnav('/#breadcrumbs');
 	}
 
 	protected function beginLayout() {}
