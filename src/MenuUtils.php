@@ -128,10 +128,10 @@ class MenuUtils {
 		];
 		
 		$options = $h->extend($defaults, $options);
-		$depth = $options['currdepth']+1;
+		
 		foreach ($options['menu'] as $entry) {
 			$href = $options['buildpath'].$entry['href'];
-			
+			$depth = $options['currdepth']+1;	
 			if ($href != '/') {
 				$filepath = $site['fileroot'].$href;
 				if (file_exists($filepath)) {
@@ -146,7 +146,7 @@ class MenuUtils {
 					mkdir($filepath);
 					$index = $filepath.'index.php';
 					$site['logger']->info(' Creating file: '.$index);
-					$content = sprintf($options['template'], str_repeat('../', $depth));	
+					$content = sprintf($options['template'], str_repeat('../', $depth+1));	
 					file_put_contents($index, $content);
 					if (isset($entry['children'])) {
 						$change = $h->extend($options, [
