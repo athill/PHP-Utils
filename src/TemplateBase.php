@@ -48,8 +48,8 @@ class TemplateBase {
 		}
 		//// add module files to includes
 		$jsModuleManager = new \Athill\Utils\JsModuleManager($jsModules);
-		foreach ($site['jsModules'] as $id => $include) {
-			if ($include) {
+		foreach ($jsModules['sequence'] as $id) {
+			if (isset($site['jsModules'][$id]) && $site['jsModules'][$id])  {
 				$module = $jsModuleManager->getModule($id);
 				$this->addModuleFiles($module);
 			}
