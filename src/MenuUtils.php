@@ -126,8 +126,9 @@ class MenuUtils {
 			'currdepth' => 0,
 			'buildpath'=>''
 		];
-		$depth = $options['currdepth'];
+		
 		$options = $h->extend($defaults, $options);
+		$depth = $options['currdepth'];
 		foreach ($options['menu'] as $entry) {
 			$href = $options['buildpath'].$entry['href'];
 			
