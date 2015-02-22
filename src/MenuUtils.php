@@ -45,7 +45,7 @@ class MenuUtils {
 					// var_dump($entry);
 					$breadcrumbs[] = $this->getBreadcrumb($entry, $buildpath);
 					$buildpath = $testpath;
-					if ($buildpath == $this->view) {
+					if ($buildpath == $this->view || $buildpath == $this->view.'index.php') {
 						return $breadcrumbs;
 					}
 					if (isset($entry['children'])) {
