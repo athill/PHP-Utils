@@ -74,8 +74,9 @@ class Setup {
 		$dirSettingsFile = $defaults['fileroot'].$defaults['dir'].'/directorySettings.php';
 		if (file_exists($dirSettingsFile)) {
 			$dirSettings = require($dirSettingsFile);
+			print_r($dirSettings['jsModules']);
 			$defaults = $utils->extend($defaults, $dirSettings);
-			print_r($defaults);
+			print_r($defaults['jsModules']);
 		}
 		return $defaults;		
 	}
