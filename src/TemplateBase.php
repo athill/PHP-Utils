@@ -114,7 +114,7 @@ class TemplateBase {
 					break;
 				case 'menu':
 					$site['menuUtils']->renderMenu([
-						'start'=>dirname($site['view']);
+						'start'=>dirname($site['view'])
 					]);
 					break;
 			}
