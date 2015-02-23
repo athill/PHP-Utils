@@ -135,7 +135,6 @@ class TemplateBase {
 
 	protected function heading() {}
 
-	protected function topMenu() {}
 
 	protected function breadcrumbs() {
 		global $h;
