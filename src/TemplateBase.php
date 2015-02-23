@@ -153,6 +153,13 @@ class TemplateBase {
 		$h->cnav('/#breadcrumbs');
 	}
 
+	protected function topMenu() {
+		global $h;
+		$h->onav('id="top-menu" class="clearfix"');
+		$this->menuUtils->renderMenu();
+		$h->cnav('.#top-menu');		
+	}
+
 	protected function beginLayout() {}
 
 	protected function leftSidebar() {}
