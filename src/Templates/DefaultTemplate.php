@@ -4,12 +4,12 @@ class DefaultTemplate extends \Athill\Utils\TemplateBase {
 
 	protected function beginRender() {
 		global $h;
-		$h->odiv('class="container"');
+		$h->odiv('class="container" id="container"');
 	}
 
 	protected function endRender() {
 		global $h;
-		$h->cdiv('/.container');
+		$h->cdiv('/#container');
 	}
 
 	protected function heading() {
