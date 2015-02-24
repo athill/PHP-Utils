@@ -14,8 +14,10 @@ class DefaultTemplate extends \Athill\Utils\TemplateBase {
 
 	protected function heading() {
 		global $h, $site;
-		$h->oheader();
+		$h->oheader('id="header"');
+		$h->odiv('class="banner"');
 		$h->h1($site['sitename']);
+		$h->cdiv('/.banner');
 		$h->cheader();
 	}
 
