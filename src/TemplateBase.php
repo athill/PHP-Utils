@@ -138,7 +138,7 @@ class TemplateBase {
 
 	protected function breadcrumbs() {
 		global $h;
-		$h->onav('id="breadcrumbs"');
+		$h->onav('class="breadcrumbs"');
 		$lastbc = count($this->breadcrumbs) - 1;
 		$h->otag('ul');
 		foreach ($this->breadcrumbs as $i => $breadcrumb){
@@ -149,14 +149,14 @@ class TemplateBase {
 			}
 		}
 		$h->ctag('ul');		
-		$h->cnav('/#breadcrumbs');
+		$h->cnav('/.breadcrumbs');
 	}
 
 	protected function topMenu() {
 		global $h;
-		$h->onav('id="top-menu" class="clearfix"');
+		$h->onav('class="top-menu clearfix"');
 		$this->menuUtils->renderMenu();
-		$h->cnav('.#top-menu');		
+		$h->cnav('/.top-menu');		
 	}
 
 	protected function beginLayout() {}
