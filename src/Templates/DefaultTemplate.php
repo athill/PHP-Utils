@@ -23,6 +23,7 @@ class DefaultTemplate extends \Athill\Utils\TemplateBase {
 
 	protected function beginLayout() {
 		global $site, $h;
+		$h->odiv('class="container"');
 		$h->odiv('id="layout" class="row"');
 		$leftsidebar = $site['layout']['leftsidebar'];
 		$rightsidebar = $site['layout']['rightsidebar'];
@@ -49,6 +50,7 @@ class DefaultTemplate extends \Athill\Utils\TemplateBase {
 			$h->cdiv();
 		}
 		$h->cdiv('#layout');
+		$h->cdiv('./container');
 	}
 
 	protected function footer() {
