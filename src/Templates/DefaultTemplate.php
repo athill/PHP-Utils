@@ -23,7 +23,8 @@ class DefaultTemplate extends \Athill\Utils\TemplateBase {
 
 	protected function beginLayout() {
 		global $site, $h;
-		$h->odiv('id="layout-wrapper" class="grid"');
+		$h->odiv('class="container-fluid"');
+		$h->odiv('class="grid"');
 		$h->odiv('id="layout" class="row"');
 		$leftsidebar = $site['layout']['leftsidebar'];
 		$rightsidebar = $site['layout']['rightsidebar'];
@@ -50,7 +51,8 @@ class DefaultTemplate extends \Athill\Utils\TemplateBase {
 			$h->cdiv();
 		}
 		$h->cdiv('#layout');
-		$h->cdiv('/#layout-wrapper');
+		$h->cdiv('/.grid');
+		$h->cdiv('/.container-fluid');
 	}
 
 	protected function footer() {
