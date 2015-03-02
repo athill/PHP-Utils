@@ -10,9 +10,9 @@
     ],
     "require": {
 	   "php": ">=5.4.0",
-       "monolog/monolog": "1.12.*@dev"
+       "monolog/monolog": "1.12.*@dev",
+       "ezyang/htmlpurifier": "dev-master"
     },
-    "version": "1.0",
     "autoload": {
     	"psr-4": {
     		"Athill\\Utils\\": "src/"
