@@ -12,7 +12,7 @@ class FieldHandler {
 
 	function renderField($field_id, $atts='') {
 		global $h;
-		$field = $this->defs[$field_id];
+		$field = $this->getField($field_id);
 		if (array_key_exists('fieldatts', $field)) {
 			$atts = $this->addAtt($atts, $field['fieldatts']);
 		}
@@ -26,6 +26,7 @@ class FieldHandler {
 			case 'email':
 			case 'number':
 			case 'file':
+			case 'password':
 				$type = ($type == 'intext') ? 'text': $type;
 				if (array_key_exists('size', $field)) {
 					$atts = $this->addAtt($atts, 'size="'.$field['size'].'"');
@@ -80,6 +81,30 @@ class FieldHandler {
 		if ($required) {
 			$h->span('*', 'class="required"');
 		}
+	}
+
+	private function getField($field_id) {
+		$field = [];
+		if (is_array($field_id)) {
+			if (!isset($field_id['id'])) {
+				throw new Exception('Id not defined in field_id');
+			} else {
+				//// add to defs?
+				$field = $field_id;
+			}
+
+		} else {
+			if (isset($this->defs[$field_id])) {
+				$field = $this->defs[$field_id];
+				$field['id'] = $field_id;
+			} else {
+				throw new Exception('Field_id not in defs');
+			}
+		}
+		if (count($field) == 0) {
+			throw new Exception('Field not initialized');
+		}
+		return $field;
 	}
 
 	function inline($field_id) {

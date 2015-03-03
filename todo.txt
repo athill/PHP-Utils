@@ -1,0 +1,5 @@
+* move FieldHandler to Uft
+* Add password type
+* Allow passing in field object to render functions
+* validate method
+* make intext default
