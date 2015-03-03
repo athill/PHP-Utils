@@ -85,6 +85,7 @@ class FieldHandler {
 
 	private function getField($field_id) {
 		$field = [];
+		//// field from array
 		if (is_array($field_id)) {
 			if (!isset($field_id['id'])) {
 				throw new Exception('Id not defined in field_id');
@@ -92,7 +93,7 @@ class FieldHandler {
 				//// add to defs?
 				$field = $field_id;
 			}
-
+		//// field from defs
 		} else {
 			if (isset($this->defs[$field_id])) {
 				$field = $this->defs[$field_id];
@@ -104,6 +105,17 @@ class FieldHandler {
 		if (count($field) == 0) {
 			throw new Exception('Field not initialized');
 		}
+		$field = $this->setFieldDefaults($field);
+		return $field;
+	}
+
+	private function setFieldDefaults($field) {
+		global $h;
+		$defaults = [
+			'label'=>'',
+			'fieldtype'=>'text',
+		];
+		$field = $h->extend($defaults, $field);
 		return $field;
 	}
 
