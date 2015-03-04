@@ -111,14 +111,37 @@ class FieldHandler {
 
 	private function setFieldDefaults($field) {
 		global $h;
+		//// TODO: this should be more robust, set defaults per field type, etc.
 		$defaults = [
 			'label'=>'',
 			'fieldtype'=>'text',
+			'value'=>''
 		];
-		$field = $h->extend($defaults, $field);
+		foreach ($defaults as $k=>$v) {
+			if (!isset($field[$k])) {
+				$field[$k] = $v;
+			}
+		}
 		return $field;
 	}
 
+	function getValue($field_id) {
+		if (array_key_exists('value', $this->defs[$field_id])) {
+			return $this->defs[$field_id]['value'];
+		} else if (array_key_exists($field_id, $this->data)) {
+			return $this->data[$field_id];	
+		} else if (array_key_exists('defaultVal', $this->defs[$field_id])) {
+			return $this->defs[$field_id]['defaultVal'];
+		} else {
+			return '';
+		}
+	}
+
+	private function addAtt($atts, $att) {
+		return ($atts == '') ? $att : $atts . ' '.$att;
+	}	
+
+	//// probably won't use these
 	function inline($field_id) {
 		$this->renderLabel($field_id);
 		$this->renderField($field_id);
@@ -149,21 +172,7 @@ class FieldHandler {
 
 
 
-	function getValue($field_id) {
-		if (array_key_exists('value', $this->defs[$field_id])) {
-			return $this->defs[$field_id]['value'];
-		} else if (array_key_exists($field_id, $this->data)) {
-			return $this->data[$field_id];	
-		} else if (array_key_exists('defaultVal', $this->defs[$field_id])) {
-			return $this->defs[$field_id]['defaultVal'];
-		} else {
-			return '';
-		}
-	}
 
-	private function addAtt($atts, $att) {
-		return ($atts == '') ? $att : $atts . ' '.$att;
-	}
 
 	// function initField($fieldname) {
 	// 	$options = array(

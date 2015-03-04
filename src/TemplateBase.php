@@ -5,9 +5,11 @@ class TemplateBase {
 	protected $jsModules = [];	
 	protected $js = [];
 	protected $css = [];
+
 	
 	private $includes = array();
 	
+	protected $flashTypes = ['success', 'info', 'warning', 'danger'];
 	protected $menuUtils;
 	protected $breadcrumbs;
 
@@ -36,7 +38,7 @@ class TemplateBase {
 		$jsModuleFile = $site['fileroot'].'/jsmodules.php';
 		$jsModules = (file_exists($jsModuleFile)) ?
 			require($jsModuleFile) :
-			array();
+			['sequence'=>[]];
 		//// determine which modules to include
 		foreach ($jsModules['sequence'] as $id) {
 			//// if it's been set on page/directory, leave that setting.
@@ -61,6 +63,13 @@ class TemplateBase {
 		//// page/directory scripts and styles
 		$this->includes = array_merge($this->includes, $site['js']);
 		$this->includes = array_merge($this->includes, $site['css']);
+
+		//// flash
+		if (!isset($_SESSION['flash'])) {
+			$this->clearFlash();
+		}
+		$site['flash'] = $_SESSION['flash'];
+		$this->clearFlash();
 	}
 
 	private function addModuleFiles($module) {
@@ -82,6 +91,13 @@ class TemplateBase {
 		} 
 		$this->includes = array_merge($this->includes, $files);
 	}
+
+	protected function clearFlash() {
+		$_SESSION['flash'] = [];
+		foreach ($this->flashTypes as $type) {
+			$_SESSION['flash'][$type] = [];
+		}
+	}	
 
 	public function begin() {
 		global $h, $site;
@@ -125,6 +141,51 @@ class TemplateBase {
 			}
 		}
 		$h->caside('./'.$id);
+	}
+
+	public function messages() {
+		global $site, $h;
+		foreach ($this->flashTypes as $type) {
+			$body = $site['flash'][$type];
+			if (count($body) != 0) {
+				$this->panel([
+					'heading'=>ucfirst($type),
+					'type'=>$type,
+					'body'=>$body
+				]);				
+			}
+
+		}
+		
+	}
+
+	protected function panel($opts=[]) {
+		global $h;
+		$defaults = [
+			'heading'=>'',
+			'footer'=>'',
+			'type'=>'default',
+			'body'=>''
+		];
+		$opts = $h->extend($defaults, $opts);
+		$paneltype = 'panel-'.$opts['type'];
+		$h->odiv(['class'=>'panel '.$paneltype]);
+		$heading = $opts['heading'];
+		//// heading
+		if ($heading != '') {
+			$h->div($h->rtn('h3', [$heading, ['class'=>'panel-title']]), ['class'=>'panel-heading']);
+		}
+		$body = $opts['body'];
+		if (is_array($body)) {
+			$body = $h->rtn('ul', [$body]);
+		}
+		$h->div($body, ['class'=>'panel-body']);
+		// $h->pa($opts);
+		$footer = $opts['footer'];
+		if (!$footer != '') {
+			$h->div($footer, ['class'=>'panel-footer']);
+		}
+		$h->cdiv('/.'.$paneltype);
 	}
 
 	protected function renderMenu($options=array()) {
