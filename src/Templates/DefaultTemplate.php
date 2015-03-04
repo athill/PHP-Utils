@@ -39,12 +39,22 @@ class DefaultTemplate extends \Athill\Utils\TemplateBase {
 			$contentcols -= 2;
 		}
 		$h->odiv('id="content" class="col-md-'.$contentcols.'"');
+		$this->beginContent();
 	}
+
+	protected function beginContent() {
+		global $site, $h;
+		$h->h2($site['pagetitle']);
+		$this->messages();
+	}
+
+	protected function endContent() {}
 
 	protected function endLayout() {
 		global $site, $h;
-		$rightsidebar = $site['layout']['rightsidebar'];
+		$this->endContent();
 		$h->cdiv('/#content');
+		$rightsidebar = $site['layout']['rightsidebar'];
 		if (count($rightsidebar) > 0) {
 			$h->odiv('class="col-md-2"');
 			$this->sidebar('right-sidebar', $rightsidebar);
