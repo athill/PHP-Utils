@@ -263,16 +263,30 @@ class Html extends Xml {
 		$this->tnl('<img src="' . $this->fixLink($src) . '" alt="' . $alt . '"'.$atts.'/>');
 	}
 
-	//// divs
-	public function odivs($divatts=[]) {
-		foreach ($divatts as $atts) {
-			$this->odiv($atts);
+	//// multiple tags
+	public function otags($atts=[], $defaulttag='div') {
+		if (!is_array($atts)) {
+			throw new Exception('html.otags(): atts needs to be an array');
+		}
+
+		foreach ($atts as $att) {
+			$tag = $defaulttag;
+			if (isset($att['tag'])) {
+				$tag = $atts['tag'];
+				unset($atts['tag']);
+			}			
+			$this->otag($tag, $atts);
 		}
 	}
 
-	public function cdivs($comments=[]) {
+	public function ctags($comments=[], $defaulttag='div') {
 		foreach ($comments as $comment) {
-			$h->cdiv($comment);
+			$tag = $defaulttag;
+			if (is_array($comment)) {
+				$tag = $comment['tag'];
+				$comment = $comment['comment'];
+			}
+			$h->ctag($tag, $comment);
 		}
 	}
 
