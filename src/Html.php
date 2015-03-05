@@ -272,10 +272,10 @@ class Html extends Xml {
 		foreach ($atts as $att) {
 			$tag = $defaulttag;
 			if (isset($att['tag'])) {
-				$tag = $atts['tag'];
-				unset($atts['tag']);
+				$tag = $att['tag'];
+				unset($att['tag']);
 			}			
-			$this->otag($tag, $atts);
+			$this->otag($tag, $att);
 		}
 	}
 
@@ -286,7 +286,7 @@ class Html extends Xml {
 				$tag = $comment['tag'];
 				$comment = $comment['comment'];
 			}
-			$h->ctag($tag, $comment);
+			$this->ctag($tag, true, $comment);
 		}
 	}
 

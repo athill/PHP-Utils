@@ -4,7 +4,7 @@ class DefaultTemplate extends \Athill\Utils\TemplateBase {
 
 	protected function beginRender() {
 		global $h;
-		$h->odiv('class="container" id="container"');
+		$h->odiv(['class'=>'container', 'id'=>'container']);
 	}
 
 	protected function endRender() {
@@ -14,8 +14,8 @@ class DefaultTemplate extends \Athill\Utils\TemplateBase {
 
 	protected function heading() {
 		global $h, $site;
-		$h->oheader('id="header"');
-		$h->odiv('class="banner"');
+		$h->oheader(['id'=>'header']);
+		$h->odiv(['class'=>'banner']);
 		$h->h1($site['sitename']);
 		$h->cdiv('/.banner');
 		$h->cheader();
@@ -23,14 +23,16 @@ class DefaultTemplate extends \Athill\Utils\TemplateBase {
 
 	protected function beginLayout() {
 		global $site, $h;
-		$h->odiv('class="container-fluid"');
-		$h->odiv('class="grid"');
-		$h->odiv('id="layout" class="row"');
+		$h->otags([
+			['class'=>'container-fluid'],
+			['class'=>'grid'],
+			['id'=>'layout', 'class'=>'row']
+		]);
 		$leftsidebar = $site['layout']['leftsidebar'];
 		$rightsidebar = $site['layout']['rightsidebar'];
 		$contentcols = 12;
 		if (count($leftsidebar) > 0) {
-			$h->odiv('class="col-md-2"');
+			$h->odiv(['class'=>'col-md-2']);
 			$contentcols -= 2;
 			$this->sidebar('left-sidebar', $leftsidebar);
 			$h->cdiv();
@@ -38,7 +40,7 @@ class DefaultTemplate extends \Athill\Utils\TemplateBase {
 		if (count($rightsidebar) > 0) {
 			$contentcols -= 2;
 		}
-		$h->odiv('id="content" class="col-md-'.$contentcols.'"');
+		$h->odiv(['id'=>'content', 'class'=>'col-md-'.$contentcols]);
 		$this->beginContent();
 	}
 
@@ -56,13 +58,15 @@ class DefaultTemplate extends \Athill\Utils\TemplateBase {
 		$h->cdiv('/#content');
 		$rightsidebar = $site['layout']['rightsidebar'];
 		if (count($rightsidebar) > 0) {
-			$h->odiv('class="col-md-2"');
+			$h->odiv(['class'=>'col-md-2']);
 			$this->sidebar('right-sidebar', $rightsidebar);
 			$h->cdiv();
 		}
-		$h->cdiv('#layout');
-		$h->cdiv('/.grid');
-		$h->cdiv('/.container-fluid');
+		$h->ctags([
+			'/#layout',
+			'/.grid',
+			'/.container-fluid'
+		]);
 	}
 
 	protected function footer() {
