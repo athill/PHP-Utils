@@ -263,6 +263,19 @@ class Html extends Xml {
 		$this->tnl('<img src="' . $this->fixLink($src) . '" alt="' . $alt . '"'.$atts.'/>');
 	}
 
+	//// divs
+	public function odivs($divatts=[]) {
+		foreach ($divatts as $atts) {
+			$this->odiv($atts);
+		}
+	}
+
+	public function cdivs($comments=[]) {
+		foreach ($comments as $comment) {
+			$h->cdiv($comment);
+		}
+	}
+
 	///////Javascript
 	public function scriptfile($files,$inline='') {
 		if ($inline == '') $inline = $this->jsInline;
