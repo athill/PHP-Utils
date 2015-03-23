@@ -133,7 +133,7 @@ class Html extends Xml {
 	 * Document Tags
 	 ******************/
 	public function ohtml($title, $includes=array(), $options=array()) {
-		$this->start();
+		$this->begin();
 		$this->head($title, $includes, $options);
 		$bodyatts = (isset($options['bodyatts'])) ? $options['bodyatts'] : '';
 		$this->obody($bodyatts);
