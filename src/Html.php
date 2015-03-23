@@ -847,7 +847,7 @@ class Html extends Xml {
 	 */	
 	public function oform($action, $method='post', $atts='') {
 		$atts = 'action="'.$action.'" method="'.$method.'"'.$this->fixAtts($atts);
-		$this->otag('form', $atts);
+		$this->otag('form', $atts, false);
 	}
 
 	/**
