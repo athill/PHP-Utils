@@ -156,7 +156,7 @@ class MenuUtils {
 	public function generateFileStructure($options=[]) {
 		global $h, $site;
 		$defaults = [
-			'template'=>'',
+			'template'=>$this->getDefaultTemplate(),
 			//// these change with recursion
 			'menu'=>$this->menu,
 			'currdepth' => 0,
@@ -199,7 +199,25 @@ class MenuUtils {
 			}
 
 		}
-	}	
+	}
+
+	protected function getDefaultTemplate() {
+		//// generate directory structure
+		$template = '<?php 
+		require(\'%ssetup.inc.php\');
+		$local = [
+			\'layout\'=>[
+				\'leftsidebar\'=> [[\'type\'=>\'content\', \'content\'=>\'left side bar\']],
+			],
+		];
+
+		$page = new \Athill\Utils\Page($local);
+
+		$page->end();
+		';
+
+		return $template;		
+	}
 
 	 	
 //  	/**
