@@ -6,9 +6,12 @@ $local = [];
 $page = new \Athill\Utils\Page($local);
 echo 'here';
 $_SESSION['flash']['info'][] = 'test';
-$base = new \Athill\Utils\TemplateBase();
+// $base = new \Athill\Utils\TemplateBase();
 // $h->pa($_SESSION['flash']);
 // $h->pa($site['flash']);
-$base->messages();
+// $base->messages();
+
+$h->pa($site['utils']['security']->authenticate(['username'=>'admin', 'password'=>'password']));
+
 
 $page->end();

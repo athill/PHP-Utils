@@ -30,6 +30,10 @@ class Setup {
 			'filename' => basename($self),
 			'dir' => dirname($self),
 			'pagetitle'=>null,
+			'objects'=>[
+				'security'=>'\Athill\Utils\Security',
+				'template'=>'\Athill\Utils\Templates\DefaultTemplate.php'
+			]			
 		);
 		
 		//// logging
@@ -56,8 +60,10 @@ class Setup {
 		  'viewport'=>'width=device-width',
 		  'charset'=>'utf-8',
 		  'title'=>null,
-		  'titleformat'=>null
+		  'titleformat'=>null,
+
 		);
+
 		if (is_null($defaults['meta']['titleformat'])) {
 			$defaults['meta']['titleformat'] = ['%s - %s', 'sitename', 'pagetitle'];
 		}
@@ -77,6 +83,11 @@ class Setup {
 			$defaults['jsModules'] = array_merge($defaults['jsModules'], $dirSettings['jsModules']);
 			$defaults = $utils->extend($defaults, $dirSettings);
 		}
+		//// create global objects
+		$defaults['utils'] = [
+			'security' => new $defaults['objects']['security'](),
+			'utils'=>$utils
+		];
 		return $defaults;		
 	}
 }
