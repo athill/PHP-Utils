@@ -8,15 +8,8 @@ class Page {
 		//// local options	
 		$site = array_merge_recursive($site, $options);
 		////Template
-		$templateClass = ucfirst($site['template']).'Template';
-		$localTemplatePath = $site['fileroot'].$site['classpath'].'/Templates/'.$templateClass.'.php';
-		if (file_exists($localTemplatePath)) {
-			require($localTemplatePath);
-			$this->template = new $templateClass();
-		} else {
-			$templateClass = "Athill\\Utils\\Templates\\".$templateClass;
-			$this->template = new $templateClass();
-		}
+		$templateClass = $site['objects']['template'];
+		$this->template = new $templateClass();
 		$this->template->begin();
 	}
 

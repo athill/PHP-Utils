@@ -31,8 +31,9 @@ class Setup {
 			'dir' => dirname($self),
 			'pagetitle'=>null,
 			'objects'=>[
+				'auth'=>'\Athill\Utils\Auth',
 				'security'=>'\Athill\Utils\Security',
-				'template'=>'\Athill\Utils\Templates\DefaultTemplate.php'
+				'template'=>'\Athill\Utils\Templates\DefaultTemplate'
 			]			
 		);
 		
@@ -85,6 +86,7 @@ class Setup {
 		}
 		//// create global objects
 		$defaults['utils'] = [
+
 			'security' => new $defaults['objects']['security'](),
 			'utils'=>$utils
 		];
