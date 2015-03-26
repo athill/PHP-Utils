@@ -32,7 +32,10 @@ $h = Athill\Utils\Html::singleton($webroot);
 $basesettings = array(
 	'webroot'=>$webroot,
 	'fileroot'=>$fileroot,
-	'instance'=>$instance
+	'instance'=>$instance,
+	'objects'=>[
+		'template'=>'\Athill\Utils\Templates\BasicTemplate'
+	]
 );
 //// set the wheels in motion
 $setup = new Athill\Utils\Setup($basesettings);
