@@ -38,6 +38,14 @@ class Utils {
  		return (json_last_error() == JSON_ERROR_NONE);
 	}
 
+	public function readJson($filename, $assoc=true) {
+		return json_decode(file_get_contents($filename), $assoc);
+	}
+
+	public function writeJson($filename, $data) {
+
+	}
+
 	////Overrides struct defaults with options
 	public function extend($defaults, $options) {
 		foreach ($defaults as $key => $value) {
