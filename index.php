@@ -1,7 +1,7 @@
 <?php
 require('./setup.inc.php');
 
-$local = [];
+$local = ['css'=>['https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css']];
 
 $page = new \Athill\Utils\Page($local);
 $_SESSION['flash']['info'][] = 'test';
@@ -11,15 +11,25 @@ $_SESSION['flash']['info'][] = 'test';
 // $base->messages();
 
 // $h->pa($site['utils']['security']->authenticate(['username'=>'admin', 'password'=>'password']));
-$data = $site['utils']['utils']->readJson('../PHP-Utils-Demo/menu.json');
 
-$view = '/nested/index.php';
+$defs = [
+	'login'=>[
+		'label'=>'Login'
+	],
+	'password'=>[
+		'fieldtype'=>'password',
+		'label'=>'Password'
+	],
+];
 
-$menu = new \Athill\Utils\MenuUtils($view, $data);
+$layout = ['login', 'password', ];
 
-// $h->pa($menu);
 
-$menu->ls(['depth'=>1, 'start'=>'/nested']);
+// $fh = new \Athill\Utils\FieldHandler($defs);
+// $fh->renderLabel('login');
+// $fh->renderField('login');
 
+$form = new \Athill\Utils\Uft\FormHorizontal($defs, $layout);
+$form->render(['leftcolwidth'=>3]);
 
 $page->end();

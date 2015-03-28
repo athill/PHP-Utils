@@ -1,4 +1,4 @@
-<?php  namespace Athill\Utils;
+<?php  namespace Athill\Utils\Uft;
 
 class FieldHandler {
 	public $defs = array();
