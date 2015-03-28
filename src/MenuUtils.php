@@ -63,7 +63,7 @@ class MenuUtils {
 		global $h;
 		$defaults = [
 			'view'=>$this->view,
-			'depth'=>1,
+			'depth'=>0,
 			'start'=>dirname($this->view),
 			'rootatts'=>'',
 			'menu'=>$this->menu
