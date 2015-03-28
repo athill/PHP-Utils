@@ -129,7 +129,7 @@ class MenuUtils {
 				]);
 				$h->oli($atts);
 				$h->a($href, $entry['display'], $atts);
-				if ($depth === -1 || $options['currdepth'] < $options['depth']) {
+				if ($options['depth'] === -1 || $options['currdepth'] < $options['depth']) {
 					$this->renderMenu($change);
 				}
 				$h->cli();
