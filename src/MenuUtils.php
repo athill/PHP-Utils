@@ -4,10 +4,10 @@ class MenuUtils {
 	private $menu;
 	private $view;
 
-	function __construct($view='') {
+	function __construct($view=null,$menu=null) {
 		global $site;
-		$this->menu = $site['menu'];
-		$this->view = ($view != '') ? $view : $site['view'];
+		$this->menu = (is_null($menu)) ? $site['menu'] : $menu;
+		$this->view = (is_null($view)) ? $site['view'] : $view;
 		$this->logger = $site['logger'];
 	}
 
@@ -59,7 +59,8 @@ class MenuUtils {
 		return ['href'=>$href, 'display'=>$entry['display']];
 	}
 
-	public function menuList($options=[]) {
+	public function ls($options=[]) {
+		global $h;
 		$defaults = [
 			'view'=>$this->view,
 			'depth'=>1,
@@ -67,6 +68,8 @@ class MenuUtils {
 			'rootatts'=>'',
 			'menu'=>$this->menu
 		];
+		$options = $h->extend($defaults, $options);
+		// $h->pa($options);
 		$this->renderMenu($options);
 	}
 
@@ -91,8 +94,9 @@ class MenuUtils {
 				$options['menu'] = $this->getSubMenu($options['start']);
 				$options['buildpath'] = $options['start'];
 			}
+			// $h->pa($options);
 		}
-		// $h->pa($options['menu']);
+		
 		$h->otag('ul', $atts);
 		foreach ($options['menu'] as $entry) {
 			if (isset($entry['menu']) && !$entry['menu']) {
@@ -125,7 +129,9 @@ class MenuUtils {
 				]);
 				$h->oli($atts);
 				$h->a($href, $entry['display'], $atts);
-				$this->renderMenu($change);
+				if ($depth === -1 || $options['currdepth'] < $options['depth']) {
+					$this->renderMenu($change);
+				}
 				$h->cli();
 
 			} else {

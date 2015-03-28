@@ -86,7 +86,9 @@ class Setup {
 		$defaults['utils'] = [
 
 			'security' => new $defaults['objects']['security'](),
-			'utils'=>$utils
+			'utils'=>$utils,
+			'template'=>null, 	////
+			'menu'=>null 		//// MenuUtils
 		];
 		return $defaults;		
 	}
