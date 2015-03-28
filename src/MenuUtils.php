@@ -64,7 +64,7 @@ class MenuUtils {
 		$defaults = [
 			'view'=>$this->view,
 			'depth'=>0,
-			'start'=>dirname($this->view),
+			'start'=>dirname($this->view).'/',
 			'rootatts'=>'',
 			'menu'=>$this->menu
 		];
@@ -91,6 +91,9 @@ class MenuUtils {
 		$atts = ($options['currdepth'] == 0) ? $options['rootatts'] : '';
 		if ($options['currdepth'] == 0) {
 			if ($options['start'] !== '') {
+				if (!preg_match('/\/$/', $options['start'])) {
+					$options['start'] .= '/';
+				}
 				$options['menu'] = $this->getSubMenu($options['start']);
 				$options['buildpath'] = $options['start'];
 			}

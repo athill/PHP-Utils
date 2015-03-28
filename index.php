@@ -19,7 +19,7 @@ $menu = new \Athill\Utils\MenuUtils($view, $data);
 
 // $h->pa($menu);
 
-$menu->ls(['depth'=>-1]);
+$menu->ls(['depth'=>1, 'start'=>'/nested']);
 
 
 $page->end();
