@@ -24,8 +24,6 @@ class Setup {
 			'js'=>array(),
 			'css'=>array(),
 			'jsModules'=>array(),
-			'classpath'=>'/classes',
-			'template'=>'default',
 			'view' => $self,
 			'filename' => basename($self),
 			'dir' => dirname($self),

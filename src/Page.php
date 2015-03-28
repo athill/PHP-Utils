@@ -9,12 +9,13 @@ class Page {
 		$site = array_merge_recursive($site, $options);
 		////Template
 		$templateClass = $site['objects']['template'];
-		$this->template = new $templateClass();
-		$this->template->begin();
+		$site['utils']['template'] = new $templateClass();
+		$site['utils']['template']->begin();
 	}
 
 	public function end() {
-		$this->template->end();
+		global $site;
+		$site['utils']['template']->end();
 	}
 }
 ?>

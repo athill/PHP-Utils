@@ -59,6 +59,17 @@ class MenuUtils {
 		return ['href'=>$href, 'display'=>$entry['display']];
 	}
 
+	public function menuList($options=[]) {
+		$defaults = [
+			'view'=>$this->view,
+			'depth'=>1,
+			'start'=>dirname($this->view),
+			'rootatts'=>'',
+			'menu'=>$this->menu
+		];
+		$this->renderMenu($options);
+	}
+
 	public function renderMenu($options=[]) {
 		global $h;
 		$defaults = [

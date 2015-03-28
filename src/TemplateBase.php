@@ -15,8 +15,8 @@ class TemplateBase {
 
 	function __construct() {
 		global $site;
-		$this->menuUtils = new MenuUtils();
-		$this->breadcrumbs = $this->menuUtils->getBreadcrumbs();
+		$site['utils']['menu'] = new MenuUtils();
+		$this->breadcrumbs = $site['utils']['menu']->getBreadcrumbs();
 		$lastcrumb = $this->breadcrumbs[count($this->breadcrumbs) - 1];
 		$pagetitle = $lastcrumb['display'];
 		//// TODO: allow formatting (sprintf) to determine e.g., sitename - pagetitle		
@@ -133,7 +133,7 @@ class TemplateBase {
 						$item['start'] : 
 						dirname($site['view']).'/';
 					$h->onav('id="sidebar-menu"');
-					$this->menuUtils->renderMenu([
+					$site['utils']['menu']->renderMenu([
 						'start'=>$start
 					]);
 					$h->cnav('/#sidebar-menu');
@@ -214,9 +214,9 @@ class TemplateBase {
 	}
 
 	protected function topMenu() {
-		global $h;
+		global $h, $site;
 		$h->onav('class="top-menu clearfix"');
-		$this->menuUtils->renderMenu();
+		$site['utils']['menu']->renderMenu();
 		$h->cnav('/.top-menu');		
 	}
 
