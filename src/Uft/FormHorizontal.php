@@ -3,12 +3,14 @@
 Class FormHorizontal {
 	private $defs;
 	private $layout;
+	private $buttons;
 	private $fh;
 
-	function __construct($defs, $layout) {
-		$this->defs = $defs;
-		$this->layout = $layout;
-		$this->fh = new \Athill\Utils\Uft\FieldHandler($defs);
+	function __construct($config) {
+		$this->defs = $config['defs'];
+		$this->layout = $config['layout'];
+		$this->buttons = (isset($config['buttons'])) ? $config['buttons'] : [];
+		$this->fh = new \Athill\Utils\Uft\FieldHandler($this->defs);
 	}
 
 	public function render($options=[]) {
@@ -19,11 +21,11 @@ Class FormHorizontal {
 		$options = $h->extend($defaults, $options);
 		$leftcolwidth = $options['leftcolwidth'];
 		if (!is_numeric($leftcolwidth) || $leftcolwidth > 10) {
-			throw new Exception('Invalid "leftcolwidth" value. Numeric and less than 11');
+			throw new \Exception('Invalid "leftcolwidth" value. Numeric and less than 11');
 		}
 		$rightcolwidth = 12 - $leftcolwidth;
 		if ($leftcolwidth + $rightcolwidth !== 12) {
-			throw new Exception('bad addition');
+			throw new \Exception('bad addition');
 		}
 		$h->oform('', 'post', [ 'class'=>'form-horizontal' ]);
 		foreach ($this->layout as $field) {
@@ -33,6 +35,16 @@ Class FormHorizontal {
 			$this->fh->renderField($field);
 			$h->cdiv();	//// field
 			$h->cdiv(); //// form-group
+		}
+		if (count($this->buttons) > 0) {
+			// $h->pa($this->buttons);
+			$h->odiv([ 'class'=>'form-group' ]);
+			$h->odiv('class="col-sm-offset-'.$leftcolwidth.' col-sm-'.$rightcolwidth.'"');
+			foreach ($this->buttons as $button) {
+				$this->fh->renderField($button);
+			}
+			$h->cdiv();
+			$h->cdiv(); //// form-group	
 		}
 		$h->cform('/.form-horizontal');
 	}
