@@ -37,7 +37,7 @@ class Html extends Xml {
 
 	function __call($name, $args) {
 		$emptyTags = explode(',', "area,base,br,col,hr,img,input,keygen,link,meta,param,source,track");
-		$nonemptyTags = explode(',', "a,abbr,address,article,aside,audio,b,bdi,bdo,blockquote,body,canvas,caption,cite,code,colgroup," .
+		$nonemptyTags = explode(',', "a,abbr,address,article,aside,audio,b,bdi,bdo,blockquote,body,button,canvas,caption,cite,code,colgroup," .
 			"command,datalist,dd,del,details,dfn,div,dl,dt,em,embed,fieldset,figcaption,figure,footer,form,h1,h2,h3,h4,h5,h6," .
 			"head,header,hgroup,html,i,iframe,ins,kbd,label,legend,li,map,mark,menu,meter,nav,noscript,object,ol,optgroup,option," .
 			"output,p,pre,progress,q,rp,rt,ruby,s,samp,script,section,select,span,strong,style,sub,summary,sup,table,tbody," .
@@ -111,6 +111,7 @@ class Html extends Xml {
              $link;
          return $link;
      }
+
 
 
 	// print array
