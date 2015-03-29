@@ -12,24 +12,30 @@ $_SESSION['flash']['info'][] = 'test';
 
 // $h->pa($site['utils']['security']->authenticate(['username'=>'admin', 'password'=>'password']));
 
-$defs = [
-	'login'=>[
-		'label'=>'Login'
+$config = [
+	'defs' => [
+		'login'=>[
+			'label'=>'Login'
+		],
+		'password'=>[
+			'fieldtype'=>'password',
+			'label'=>'Password'
+		],
+		'submit'=>[
+			'fieldtype'=>'submit',
+			'value'=>'Submit'
+		],
+		'clear'=>[
+			'fieldtype'=>'button',
+			'content'=>'Clear'
+		]
 	],
-	'password'=>[
-		'fieldtype'=>'password',
-		'label'=>'Password'
-	],
+	'layout' => ['login', 'password'],
+	'buttons' => ['submit', 'clear']
 ];
 
-$layout = ['login', 'password', ];
 
-
-// $fh = new \Athill\Utils\FieldHandler($defs);
-// $fh->renderLabel('login');
-// $fh->renderField('login');
-
-$form = new \Athill\Utils\Uft\FormHorizontal($defs, $layout);
-$form->render(['leftcolwidth'=>3]);
+$form = new \Athill\Utils\Uft\FormHorizontal($config);
+$form->render(['leftcolwidth'=>1]);
 
 $page->end();

@@ -1,20 +1,20 @@
 <?php  namespace Athill\Utils\Uft;
 
 class FieldHandler {
-	public $defs = array();
-	public $data = array();
+	public $defs = [];
+	public $data = [];
 	public $appendColonToLabel = true;
 
-	function __construct($defs, $data = array()) {
+	function __construct($defs, $data=[]) {
 		$this->defs = $defs;
 		$this->data = $data;
 	}
 
-	function renderField($field_id, $atts='') {
+	function renderField($field_id, $atts=[]) {
 		global $h;
 		$field = $this->getField($field_id);
 		if (array_key_exists('fieldatts', $field)) {
-			$atts = $this->addAtt($atts, $field['fieldatts']);
+			$atts = $h->addAtts($atts, $field['fieldatts']);
 		}
 		$value = $this->getValue($field_id);
 		$type = $field['fieldtype'];
@@ -29,10 +29,10 @@ class FieldHandler {
 			case 'password':
 				$type = ($type == 'intext') ? 'text': $type;
 				if (array_key_exists('size', $field)) {
-					$atts = $this->addAtt($atts, 'size="'.$field['size'].'"');
+					$atts = $h->addAtts($atts, ['size'=>$field['size']]);
 				}
 				if (array_key_exists('maxlength', $field)) {
-					$atts = $this->addAtt($atts, 'maxlength="'.$field['maxlength'].'"');
+					$atts = $h->addAtts($atts, ['maxlength'=>$field['maxlength']]);
 				}
 				if ($type == 'date') {
 					$atts = $h->addClass($atts, 'datepicker');
@@ -59,8 +59,12 @@ class FieldHandler {
 			case 'select':
 				$h->select($field_id, $field['options'], $value, $atts);
 				break;
+			case 'button':
+				$atts = $h->addAtts(['name'=>$field_id, 'id'=>$field_id], $atts);
+				$h->button($field['content'], $atts);
+				break;
 			default:
-				# code...
+				throw new \Exception('Unimplemented fieldtype in FieldHandler: '.$type);
 				break;
 		}
 	}
@@ -83,12 +87,14 @@ class FieldHandler {
 		}
 	}
 
-	private function getField($field_id) {
+	protected function getField($field_id) {
 		$field = [];
+
 		//// field from array
+		// var_dump($field_id);
 		if (is_array($field_id)) {
 			if (!isset($field_id['id'])) {
-				throw new Exception('Id not defined in field_id');
+				throw new \Exception('Id not defined in field_id');
 			} else {
 				//// add to defs?
 				$field = $field_id;
@@ -99,7 +105,7 @@ class FieldHandler {
 				$field = $this->defs[$field_id];
 				$field['id'] = $field_id;
 			} else {
-				throw new Exception('Field_id not in defs');
+				throw new \Exception('Field_id not in defs');
 			}
 		}
 		if (count($field) == 0) {
@@ -114,7 +120,7 @@ class FieldHandler {
 		//// TODO: this should be more robust, set defaults per field type, etc.
 		$defaults = [
 			'label'=>'',
-			'fieldtype'=>'text',
+			'fieldtype'=>'intext',
 			'value'=>''
 		];
 		foreach ($defaults as $k=>$v) {
@@ -125,7 +131,7 @@ class FieldHandler {
 		return $field;
 	}
 
-	function getValue($field_id) {
+	protected function getValue($field_id) {
 		if (array_key_exists('value', $this->defs[$field_id])) {
 			return $this->defs[$field_id]['value'];
 		} else if (array_key_exists($field_id, $this->data)) {
@@ -136,40 +142,6 @@ class FieldHandler {
 			return '';
 		}
 	}
-
-	private function addAtt($atts, $att) {
-		return ($atts == '') ? $att : $atts . ' '.$att;
-	}	
-
-	//// probably won't use these
-	function inline($field_id) {
-		$this->renderLabel($field_id);
-		$this->renderField($field_id);
-	}
-
-	function inline_r($field_id) {
-		$this->renderField($field_id);
-		$this->renderLabel($field_id);
-	}
-
-	function twoline($field_id)	{
-		global $h;
-		$this->renderLabel($field_id);
-		$h->br();
-		$this->renderField($field_id);		
-	}
-
-	function row($field_id) {
-		global $h;
-		$h->oth();
-		$this->renderLabel($field_id);
-		$h->cth();
-		$h->otd();
-		$this->renderField($field_id);
-		$h->ctd();
-	}
-
-
 
 
 
