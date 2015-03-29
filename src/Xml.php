@@ -100,7 +100,7 @@ class Xml {
 	 */
 	public function fixAtts($atts) {
 		if (!is_array($atts)) {
-			if ($atts != '' && substr($atts, 0, 1) != ' ') return ' '.$atts;
+			if ($atts != '' && substr($atts, 0, 1) !== ' ') return ' '.$atts;
 			else return $atts;
 		} else {
 			$str = '';
@@ -109,6 +109,32 @@ class Xml {
 			}
 			return $str;
 		}
+	}
+
+	public function addAtts($oldatts, $newatts) {
+		return array_merge(
+			$this->splitAtts($oldatts),
+			$this->splitAtts($newatts)
+		);
+	}
+
+	public function splitAtts($atts) {
+		if (is_array($atts)) {
+			return $atts;
+		}
+		//// http://stackoverflow.com/questions/317053/regular-expression-for-extracting-tag-attributes
+		$splitter = '/(\S+)=["\']?((?:.(?!["\']?\s+(?:\S+)=|[>"\']))+.)["\']?/';
+		$matches = preg_grep($splitter, $oldatts);
+		$split = [];
+		$key = null;
+		foreach ($matches as $i => $match) {
+			if ($i % 2 == 0) {
+				$key = $match;
+			} else {
+				$split[$key] = $match;
+			}
+		}
+		return $split;
 	}
 
 	/**
