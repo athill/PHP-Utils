@@ -41,9 +41,9 @@ What's happening here?
 		$h->tnl('content'); 					//// tab-newline
 		$h->cdiv();								//// close div tag
 
-		//// both generate <div class="rad">content&lt;/div>
+		//// both generate <div class="rad">content</div>
 
-	There are more complicated methods and you are under no obligation to use it. Simply end your PHP tag after instantiating $page, reinstate it before calling $page->end(), and place your HTML content in between.
+	There are more complicated, but useful, methods, but you are under no obligation to use $h. Simply end your PHP tag after instantiating $page, reinstate it before calling $page->end(), and place your HTML content in between.
 		
 		<?php
 		require('./setup.inc.php');
