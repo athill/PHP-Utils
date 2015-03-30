@@ -30,7 +30,7 @@ What's happening here?
 
 1. setup.inc.php is where you overide default settings found in Setup.php. It also starts/continues the session, sets the timezone, etc. It also creates global $h and $site variables. More on these later.
 2. You could skip to "//// page content" at this point. Once you've loaded setup, you have an array (heh) of data and methods. However, it's up to you to supply any header or footer, etc.
-3. The $local variable (just a convention) is where you override defaults for the current page. You can now overriding defaults on the site and page level
+3. The $local variable (just a convention) is where you override defaults for the current page. You can now override defaults on the site and page level
 4. $page takes care of everything but the page content. Head tag, header, footer, optional sidebars. Passing a different template into $page can completely change the look and feel of the page.
 5. $site is where the configuration is stored and available to you. 
 6. $h is an HTML generator. For example:
@@ -41,7 +41,7 @@ What's happening here?
 		$h->tnl('content'); 					//// tab-newline
 		$h->cdiv();								//// close div tag
 
-		//// both generate &lt;div class="rad">content&lt;/div>
+		//// both generate <div class="rad">content&lt;/div>
 
 	There are more complicated methods and you are under no obligation to use it. Simply end your PHP tag after instantiating $page, reinstate it before calling $page->end(), and place your HTML content in between.
 		
