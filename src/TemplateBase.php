@@ -197,31 +197,41 @@ class TemplateBase {
 	protected function heading() {}
 
 
-	protected function breadcrumbs() {
+	protected function breadcrumbs($opts=[]) {
 		global $h;
-		$h->onav('class="breadcrumbs"');
+		$defaults = [
+			'navatts'=>[]
+		];
+		$opts = $h->extend($defaults, $opts);
+		$h->onav($opts['navatts']);
 		$lastbc = count($this->breadcrumbs) - 1;
-		$h->otag('ul');
+		$crumbs = [];
+		// $h->otag('ul');
 		foreach ($this->breadcrumbs as $i => $breadcrumb){
 			if ($i == $lastbc) {
-				$h->li($breadcrumb['display']);
+				$crumbs[] = ($breadcrumb['display']);
 			} else {
-				$h->li($h->rtn('a', [$breadcrumb['href'], $breadcrumb['display']]));
+				$crumbs[] = ($h->rtn('a', [$breadcrumb['href'], $breadcrumb['display']]));
 			}
 		}
-		$h->ctag('ul');		
+		// $h->ctag('ul');	
+		$h->ul($crumbs);
 		$h->cnav('/.breadcrumbs');
 	}
 
 	protected function menu($opts = []) {
 		global $h, $site;
 		$defaults = [
-			'navatts'=>'',
-			'ulatts'=>''
+			'navatts'=>[],
+			'ulatts'=>[],
+			'depth'=>-1
 		];
 		$opts = $h->extend($defaults, $opts);
 		$h->onav($opts['navatts']);
-		$site['utils']['menu']->renderMenu([ 'rootatts'=>$opts['ulatts'] ]);
+		$site['utils']['menu']->renderMenu([ 
+			'rootatts'=>$opts['ulatts'],
+			'depth'=>$opts['depth']
+		]);
 		$h->cnav('/.top-menu');		
 	}	
 
