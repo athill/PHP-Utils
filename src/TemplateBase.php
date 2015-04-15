@@ -213,12 +213,17 @@ class TemplateBase {
 		$h->cnav('/.breadcrumbs');
 	}
 
-	protected function topMenu() {
+	protected function menu($opts = []) {
 		global $h, $site;
-		$h->onav('class="top-menu clearfix"');
-		$site['utils']['menu']->renderMenu();
+		$defaults = [
+			'navatts'=>'',
+			'ulatts'=>''
+		];
+		$opts = $h->extend($defaults, $opts);
+		$h->onav($opts['navatts']);
+		$site['utils']['menu']->renderMenu([ 'rootatts'=>$opts['ulatts'] ]);
 		$h->cnav('/.top-menu');		
-	}
+	}	
 
 	protected function beginLayout() {}
 
