@@ -31,7 +31,8 @@ class Setup {
 			'objects'=>[
 				'auth'=>'\Athill\Utils\Auth',
 				'security'=>'\Athill\Utils\Security',
-				'template'=>'\Athill\Utils\Templates\DefaultTemplate'
+				'template'=>'\Athill\Utils\Templates\DefaultTemplate',
+				'menu'=>'\Athill\Utils\MenuUtils'
 			]			
 		);
 		
@@ -88,7 +89,7 @@ class Setup {
 			'security' => new $defaults['objects']['security'](),
 			'utils'=>$utils,
 			'template'=>null, 	////
-			'menu'=>null 		//// MenuUtils
+			'menu'=>new $defaults['objects']['menu']() 		//// MenuUtils
 		];
 		return $defaults;		
 	}

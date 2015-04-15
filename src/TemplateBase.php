@@ -15,12 +15,14 @@ class TemplateBase {
 
 	function __construct() {
 		global $site;
-		$site['utils']['menu'] = new MenuUtils();
-		$this->breadcrumbs = $site['utils']['menu']->getBreadcrumbs();
-		$lastcrumb = $this->breadcrumbs[count($this->breadcrumbs) - 1];
-		$pagetitle = $lastcrumb['display'];
+		//$site['utils']['menu'] = new MenuUtils();
+		
+
 		//// TODO: allow formatting (sprintf) to determine e.g., sitename - pagetitle		
 		if (is_null($site['pagetitle'])) {
+			$breadcrumbs = $this->getBreadcrumbs();
+			$lastcrumb = $breadcrumbs[count($this->breadcrumbs) - 1];
+			$pagetitle = $lastcrumb['display'];
 			$site['pagetitle'] = $pagetitle;
 		}
 		if (is_null($site['meta']['title'])) {
@@ -50,6 +52,9 @@ class TemplateBase {
 		}
 		//// add module files to includes
 		$jsModuleManager = new \Athill\Utils\JsModuleManager($jsModules);
+
+
+		//// TODO: Move this and the methods it uses to the manager
 		foreach ($jsModules['sequence'] as $id) {
 			if (isset($site['jsModules'][$id]) && $site['jsModules'][$id])  {
 				$module = $jsModuleManager->getModule($id);
@@ -90,6 +95,15 @@ class TemplateBase {
 			$files);			
 		} 
 		$this->includes = array_merge($this->includes, $files);
+	}
+
+	protected function getBreadcrumbs() {
+		global $site;
+		if (is_null($this->breadcrumbs)) {
+			$this->breadcrumbs = $site['utils']['menu']->getBreadcrumbs();	
+		}
+		return $this->breadcrumbs;
+		
 	}
 
 	protected function clearFlash() {
@@ -204,17 +218,16 @@ class TemplateBase {
 		];
 		$opts = $h->extend($defaults, $opts);
 		$h->onav($opts['navatts']);
-		$lastbc = count($this->breadcrumbs) - 1;
+		$breadcrumbs = $this->getBreadcrumbs();
+		$lastbc = count($breadcrumbs) - 1;
 		$crumbs = [];
-		// $h->otag('ul');
-		foreach ($this->breadcrumbs as $i => $breadcrumb){
+		foreach ($breadcrumbs as $i => $breadcrumb){
 			if ($i == $lastbc) {
 				$crumbs[] = ($breadcrumb['display']);
 			} else {
 				$crumbs[] = ($h->rtn('a', [$breadcrumb['href'], $breadcrumb['display']]));
 			}
 		}
-		// $h->ctag('ul');	
 		$h->ul($crumbs);
 		$h->cnav('/.breadcrumbs');
 	}
