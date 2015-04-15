@@ -32,7 +32,8 @@ class Setup {
 				'auth'=>'\Athill\Utils\Auth',
 				'security'=>'\Athill\Utils\Security',
 				'template'=>'\Athill\Utils\Templates\DefaultTemplate',
-				'menu'=>'\Athill\Utils\MenuUtils'
+				'menu'=>'\Athill\Utils\MenuUtils',
+				'utils'=>'\Athill\Utils\Utils'
 			]			
 		);
 		
@@ -73,7 +74,7 @@ class Setup {
 			'rightsidebar'=>[],
 		);
 
-		$utils = new \Athill\Utils\Utils();
+		$utils = new $defaults['objects']['utils']();
 		//// override base settings
 		$defaults = $utils->extend($defaults, $this->basesettings);
 		//// override directory settings
@@ -83,14 +84,22 @@ class Setup {
 			$defaults['jsModules'] = array_merge($defaults['jsModules'], $dirSettings['jsModules']);
 			$defaults = $utils->extend($defaults, $dirSettings);
 		}
-		//// create global objects
-		$defaults['utils'] = [
 
-			'security' => new $defaults['objects']['security'](),
-			'utils'=>$utils,
-			'template'=>null, 	////
-			'menu'=>new $defaults['objects']['menu']() 		//// MenuUtils
-		];
 		return $defaults;		
+	}
+
+	//// site should be set by now
+
+
+	public function getUtils() {
+		global $site;
+		//// create global objects
+		$utils = [
+			'security' => new $site['objects']['security'](),
+			'utils'=> new \Athill\Utils\Utils(),
+			'template'=>null, 	////
+			'menu'=>new $site['objects']['menu']() 		//// MenuUtils
+		];
+		return $utils;
 	}
 }

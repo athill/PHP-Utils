@@ -10,7 +10,7 @@ class TemplateBase {
 	private $includes = array();
 	
 	protected $flashTypes = ['success', 'info', 'warning', 'danger'];
-	protected $menuUtils;
+	// protected $menuUtils;
 	protected $breadcrumbs;
 
 	function __construct() {
@@ -99,9 +99,11 @@ class TemplateBase {
 
 	protected function getBreadcrumbs() {
 		global $site;
+		// var_dump($site['utils']['menu']);
 		if (is_null($this->breadcrumbs)) {
 			$this->breadcrumbs = $site['utils']['menu']->getBreadcrumbs();	
 		}
+		
 		return $this->breadcrumbs;
 		
 	}

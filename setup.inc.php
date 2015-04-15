@@ -20,7 +20,7 @@ if (isset($_SERVER['HTTP_HOST'])) {
 	}
 }
 
-$fileroot = $fileroot.$webroot;
+// $fileroot = $fileroot.$webroot;
 
 //// autoloader (composer update)
 $loader = require_once($fileroot.'/vendor/autoload.php');
@@ -38,3 +38,5 @@ $basesettings = array(
 $setup = new Athill\Utils\Setup($basesettings);
 //// $site is reserved as well. It determines various settings.
 $site = $setup->getDefaults();
+//// these depend on $site being set
+$site['utils'] = $setup->getUtils();
