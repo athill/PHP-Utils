@@ -99,7 +99,6 @@ class TemplateBase {
 
 	protected function getBreadcrumbs() {
 		global $site;
-		// var_dump($site['utils']['menu']);
 		if (is_null($this->breadcrumbs)) {
 			$this->breadcrumbs = $site['utils']['menu']->getBreadcrumbs();	
 		}
@@ -162,6 +161,10 @@ class TemplateBase {
 	public function messages() {
 		global $site, $h;
 		foreach ($this->flashTypes as $type) {
+			//// TODO: this should be handled before now
+			if (!isset($site['flash'][$type])) {
+				$site['flash'][$type] = [];
+			}
 			$body = $site['flash'][$type];
 			if (count($body) != 0) {
 				$this->panel([
