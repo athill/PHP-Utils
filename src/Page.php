@@ -9,7 +9,7 @@ class Page {
 		$templateClass = $site['objects']['template'];
 		$site['utils']['template'] = new $templateClass();
 		//// local options	
-		$site = $site['utils']['utils']->extent($site, $options);
+		$site = $site['utils']['utils']->extend($site, $options);
 		$site['utils']['template']->begin();
 	}
 
