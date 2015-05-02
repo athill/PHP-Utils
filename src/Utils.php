@@ -45,12 +45,17 @@ class Utils {
 	public function writeJson($filename, $data) {
 
 	}
-
+	
 	////Overrides struct defaults with options
 	public function extend($defaults, $options) {
+		global $h;
 		foreach ($defaults as $key => $value) {
 			if (array_key_exists($key, $options)) {
-				if (is_array($options[$key]) && $this->isAssoc($options[$key])) {
+				if (is_array($options[$key]) && count($options[$key]) > 0 && $this->isAssoc($options[$key])) {
+					if ($key == 'rightsidebar') {
+						$h->pa($defaults[$key]);
+						$h->pa($options[$key]);
+					}
 					$defaults[$key] = $this->extend($defaults[$key], $options[$key]);
 				} else {
 					$defaults[$key] = $options[$key];

@@ -5,11 +5,11 @@ class Page {
 
 	function __construct($options=array()) {
 		global $h, $site;
-		//// local options	
-		$site = array_merge_recursive($site, $options);
 		////Template
 		$templateClass = $site['objects']['template'];
 		$site['utils']['template'] = new $templateClass();
+		//// local options	
+		$site = $site['utils']['utils']->extent($site, $options);
 		$site['utils']['template']->begin();
 	}
 
