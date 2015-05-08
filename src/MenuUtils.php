@@ -8,7 +8,12 @@ class MenuUtils {
 		global $site;
 		$this->menu = (is_null($menu)) ? $site['menu'] : $menu;
 		$this->view = (is_null($view)) ? $site['view'] : $view;
+		$this->view = $this->fixView($this->view);
 		$this->logger = $site['logger'];
+	}
+
+	private function fixView($view) {
+		return preg_replace('/index.php$/', '', $view);
 	}
 
 	public function getBreadcrumbs() {
@@ -25,7 +30,7 @@ class MenuUtils {
 		$buildpath = '';
 		$menu = $this->menu;
 		$sanitycheck = 0;
-		while ($buildpath != $this->view) {
+		while ($buildpath !== $this->view) {
 			//// TODO: fix this
 			$sanitycheck++;
 			if ($sanitycheck == 500) {
@@ -51,6 +56,7 @@ class MenuUtils {
 					break;
 				}
 			}
+			return $breadcrumbs;
 		}
 	}
 
@@ -88,8 +94,10 @@ class MenuUtils {
 		];
 
 		$options = $h->extend($defaults, $options);
+		$options['view'] = $this->fixView($options['view']);
 		$atts = ($options['currdepth'] == 0) ? $options['rootatts'] : '';
 		if ($options['currdepth'] == 0) {
+			$h->div($options['view']);
 			if ($options['start'] !== '') {
 				if (!preg_match('/\/$/', $options['start'])) {
 					$options['start'] .= '/';
@@ -116,13 +124,15 @@ class MenuUtils {
 			//// list item tag
 			$highlight = false;
 			$atts = [];
-			if (dirname($options['view'] == '/' && $entry['href'] == '/')) {
-				$highlight = true;	
-			} else if (strpos($options['view'], $options['buildpath'].$entry['href']) == 0) {
-				$highlight = false;
+			if ($options['view'] == '/') {
+				if ($entry['href'] == '/') {
+					$highlight = true;
+				}
+			} else if (strpos($options['view'], $options['buildpath'].$entry['href']) === 0) {
+				$highlight = true;
 			}
 			if ($highlight) {
-				$atts = 'class="'.$options['highlightclass'].'"';	
+				$atts = ['class'=>$options['highlightclass']];	
 			}
 			if (isset($entry['children'])) {
 				$change = $h->extend($options, [
