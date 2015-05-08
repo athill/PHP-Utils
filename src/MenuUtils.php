@@ -100,7 +100,6 @@ class MenuUtils {
 		$options['view'] = $this->fixView($options['view']);
 		$atts = ($options['currdepth'] == 0) ? $options['rootatts'] : '';
 		if ($options['currdepth'] == 0) {
-			$h->div($options['view']);
 			if ($options['start'] !== '') {
 				if (!preg_match('/\/$/', $options['start'])) {
 					$options['start'] .= '/';

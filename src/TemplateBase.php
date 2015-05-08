@@ -250,7 +250,7 @@ class TemplateBase {
 			'rootatts'=>$opts['ulatts'],
 			'depth'=>$opts['depth']
 		]);
-		$h->cnav('/.top-menu');		
+		$h->cnav();		
 	}	
 
 	protected function beginLayout() {}
