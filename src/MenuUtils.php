@@ -127,8 +127,8 @@ class MenuUtils {
 			//// list item tag
 			$highlight = false;
 			$atts = [];
-			if ($options['view'] == '/') {
-				if ($entry['href'] == '/') {
+			if ($entry['href'] == '/') {
+				if ($options['view'] == '/') {
 					$highlight = true;
 				}
 			} else if (strpos($options['view'], $options['buildpath'].$entry['href']) === 0) {

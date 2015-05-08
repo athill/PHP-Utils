@@ -13,11 +13,11 @@ $_SESSION['flash']['info'][] = 'test';
 // $base->messages();
 
 // $h->pa($site['utils']['security']->authenticate(['username'=>'admin', 'password'=>'password']));
-// $view = '/about/';
+$view = '/';
 // $struct = $site['utils']['utils']->readJson('menu.json');
-// $h->pa($struct);
-// $menu = new \Athill\Utils\MenuUtils($view);
+
+$menu = new \Athill\Utils\MenuUtils($view);
 // $h->pa($menu->getBreadcrumbs());
-// $menu->renderMenu();
+$menu->renderMenu();
 
 $page->end();
