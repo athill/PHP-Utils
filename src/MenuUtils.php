@@ -24,27 +24,27 @@ class MenuUtils {
 				$breadcrumbs = [$this->getBreadcrumb($entry)];
 			}
 		}
-		if (dirname($this->view) == '/') {
+		if ($this->view === '/') {
 			return $breadcrumbs;
 		}
 		$buildpath = '';
 		$menu = $this->menu;
 		$sanitycheck = 0;
 		while ($buildpath !== $this->view) {
-			//// TODO: fix this
 			$sanitycheck++;
 			if ($sanitycheck == 500) {
 				$site['logger']->error('fail in getBreadcrumbs(): '.$buildpath.' - '.$this->view.' - '.$sanitycheck);
-				echo 'sanity fail';
 				return $breadcrumbs;
-				
 			}
+			$found = false;
+
 			foreach ($menu as $entry) {
 				if ($entry['href'] == '/') {
 					continue;
 				}
 				$testpath = $buildpath.$entry['href'];
 				if (strpos($this->view, $testpath) === 0) {
+					$found = true;
 					$breadcrumbs[] = $this->getBreadcrumb($entry, $buildpath);
 					$buildpath = $testpath;
 					if (in_array($this->view, [$buildpath, $buildpath.'index.php'])) {
@@ -56,7 +56,10 @@ class MenuUtils {
 					break;
 				}
 			}
-			return $breadcrumbs;
+			if (!$found) {
+				return $breadcrumbs;	
+			}
+			
 		}
 	}
 

@@ -13,11 +13,11 @@ $_SESSION['flash']['info'][] = 'test';
 // $base->messages();
 
 // $h->pa($site['utils']['security']->authenticate(['username'=>'admin', 'password'=>'password']));
-// $view = '/nested/nest2/nest2.2/nest2.2.1.php';
-// echo $site['view'];
+// $view = '/about/';
 // $struct = $site['utils']['utils']->readJson('menu.json');
-// // $h->pa($struct);
+// $h->pa($struct);
 // $menu = new \Athill\Utils\MenuUtils($view);
+// $h->pa($menu->getBreadcrumbs());
 // $menu->renderMenu();
 
 $page->end();
