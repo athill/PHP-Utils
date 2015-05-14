@@ -55,7 +55,7 @@ class Setup {
 		  'description' => $defaults['sitename'],
 		  'keywords' => implode(',', explode(' ', $defaults['sitename'])),
 		  'author' => isset($_SERVER['USERNAME']) ? $_SERVER['USERNAME'] : '',
-		  'copyright' => date('Y').', '. $defaults['sitename'],
+		  'copyright' => $defaults['sitename'].' '.date('Y'),
 		  'icon'=>'',
 		  'compatible'=>'IE=edge,chrome=1',
 		  'viewport'=>'width=device-width',
