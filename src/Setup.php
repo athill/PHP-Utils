@@ -36,7 +36,9 @@ class Setup {
 				'utils'=>'\Athill\Utils\Utils'
 			]			
 		);
-		
+		$utils = new $defaults['objects']['utils']();
+		//// override base settings
+		$defaults = $utils->extend($defaults, $this->basesettings);		
 		//// logging
 		if (isset($this->basesettings['logger'])) {
 			$defaults['logger'] = $this->basesettings['logger'];
@@ -74,7 +76,7 @@ class Setup {
 			'rightsidebar'=>[],
 		);
 
-		$utils = new $defaults['objects']['utils']();
+		// $utils = new $defaults['objects']['utils']();
 		//// override base settings
 		$defaults = $utils->extend($defaults, $this->basesettings);
 		//// override directory settings
