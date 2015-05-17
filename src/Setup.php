@@ -86,8 +86,21 @@ class Setup {
 			$defaults['jsModules'] = array_merge($defaults['jsModules'], $dirSettings['jsModules']);
 			$defaults = $utils->extend($defaults, $dirSettings);
 		}
-
 		return $defaults;		
+	}
+
+	public function setEnvironment() {
+		global $site;
+		//// environment vars
+		if (file_exists($site['fileroot'].'/.env.php')) {
+			$env = require('.env.php');
+			$_ENV = array_merge($_ENV, $env);
+		}
+		$instance_env_file = $site['fileroot'].'/.env.'.$site['instance'].'.php';
+		if (file_exists($instance_env_file)) {
+			$env = require($instance_env_file);
+			$_ENV = array_merge($_ENV, $env);
+		}
 	}
 
 	//// site should be set by now
@@ -95,6 +108,8 @@ class Setup {
 
 	public function getUtils() {
 		global $site;
+		//// set up $_ENV
+		$this->setEnvironment();
 		//// create global objects
 		$utils = [
 			'security' => new $site['objects']['security'](),
