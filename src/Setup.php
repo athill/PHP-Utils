@@ -92,8 +92,9 @@ class Setup {
 	public function setEnvironment() {
 		global $site;
 		//// environment vars
-		if (file_exists($site['fileroot'].'/.env.php')) {
-			$env = require('.env.php');
+		$base_env_file = $site['fileroot'].'/.env.php';
+		if (file_exists($base_env_file)) {
+			$env = require($base_env_file);
 			$_ENV = array_merge($_ENV, $env);
 		}
 		$instance_env_file = $site['fileroot'].'/.env.'.$site['instance'].'.php';
