@@ -36,7 +36,21 @@ $basesettings = array(
 );
 //// set the wheels in motion
 $setup = new Athill\Utils\Setup($basesettings);
+
 //// $site is reserved as well. It determines various settings.
 $site = $setup->getDefaults();
+
 //// these depend on $site being set
 $site['utils'] = $setup->getUtils();
+
+//// environment vars
+if (file_exists('.env.php')) {
+	$env = require('.env.php');
+	$_ENV = array_merge($_ENV, $env);
+}
+$instance_env_file = '.env.'.$site['instance'].'.php';
+if (file_exists($instance_env_file)) {
+	$env = require($instance_env_file);
+	$_ENV = array_merge($_ENV, $env);
+}
+

@@ -12,12 +12,6 @@ $_SESSION['flash']['info'][] = 'test';
 // $h->pa($site['flash']);
 // $base->messages();
 
-// $h->pa($site['utils']['security']->authenticate(['username'=>'admin', 'password'=>'password']));
-$view = '/';
-// $struct = $site['utils']['utils']->readJson('menu.json');
-
-$menu = new \Athill\Utils\MenuUtils($view);
-// $h->pa($menu->getBreadcrumbs());
-$menu->renderMenu();
+// $h->pa($_ENV);
 
 $page->end();

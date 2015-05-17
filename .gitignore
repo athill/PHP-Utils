@@ -2,3 +2,5 @@ composer.lock
 .DS_Store
 Thumbs.db
 vendor/
+.env*.php
+!.env.example.php
