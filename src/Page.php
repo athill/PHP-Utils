@@ -5,12 +5,12 @@ class Page {
 
 	function __construct($options=array()) {
 		global $h, $site;
+		//// local options	
+		$site = $site['utils']['utils']->extend($site, $options);
 		////Template
 		$templateClass = $site['objects']['template'];
 		$site['utils']['template'] = new $templateClass();
-		//// local options	
-		$site = $site['utils']['utils']->extend($site, $options);
-		$site['utils']['template']->begin();
+		$site['utils']['template']->begin();		
 	}
 
 	public function end() {

@@ -52,16 +52,17 @@ class Utils {
 		foreach ($defaults as $key => $value) {
 			if (array_key_exists($key, $options)) {
 				if (is_array($options[$key]) && count($options[$key]) > 0 && $this->isAssoc($options[$key])) {
-					if ($key == 'rightsidebar') {
-						$h->pa($defaults[$key]);
-						$h->pa($options[$key]);
-					}
 					$defaults[$key] = $this->extend($defaults[$key], $options[$key]);
 				} else {
 					$defaults[$key] = $options[$key];
 				}
-			}
+			}			
 		}
+		foreach ($options as $key =>$value) {
+			if (!isset($defaults[$key])) {
+				$defaults[$key] = $options[$key];
+			}
+		}		
 		return $defaults;
 	}
 
