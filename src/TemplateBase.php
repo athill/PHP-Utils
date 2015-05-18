@@ -55,12 +55,14 @@ class TemplateBase {
 
 
 		//// TODO: Move this and the methods it uses to the manager
-		foreach ($jsModules['sequence'] as $id) {
-			if (isset($site['jsModules'][$id]) && $site['jsModules'][$id])  {
-				$module = $jsModuleManager->getModule($id);
-				$this->addModuleFiles($module);
-			}
-		}
+		// foreach ($jsModules['sequence'] as $id) {
+		// 	if (isset($site['jsModules'][$id]) && $site['jsModules'][$id])  {
+		// 		$module = $jsModuleManager->getModule($id);
+		// 		$this->addModuleFiles($module);
+		// 	}
+		// }
+
+		$moduleIncludes = $jsModuleManager->getIncludes($site['jsModules']);
 		//// template scripts and styles
 		$this->includes = array_merge($this->includes, $this->js);
 		$this->includes = array_merge($this->includes, $this->css);
@@ -77,25 +79,25 @@ class TemplateBase {
 		$this->clearFlash();
 	}
 
-	private function addModuleFiles($module) {
-		$filetypes = array('js', 'css');
-		$root = (isset($module['root'])) ? $module['root'] : '';
-		foreach ($filetypes as $filetype) {
-			if (isset($module[$filetype])) {
-				$this->addFiles($root, $module[$filetype]);
-			}
-		}	
-	}
+	// private function addModuleFiles($module) {
+	// 	$filetypes = array('js', 'css');
+	// 	$root = (isset($module['root'])) ? $module['root'] : '';
+	// 	foreach ($filetypes as $filetype) {
+	// 		if (isset($module[$filetype])) {
+	// 			$this->addFiles($root, $module[$filetype]);
+	// 		}
+	// 	}	
+	// }
 
-	private function addFiles($root, $files) {
-		if ($root != '') {
-			$files = array_map(function($file) use($root) {
-				return $root.$file;
-			},
-			$files);			
-		} 
-		$this->includes = array_merge($this->includes, $files);
-	}
+	// private function addFiles($root, $files) {
+	// 	if ($root != '') {
+	// 		$files = array_map(function($file) use($root) {
+	// 			return $root.$file;
+	// 		},
+	// 		$files);			
+	// 	} 
+	// 	$this->includes = array_merge($this->includes, $files);
+	// }
 
 	protected function getBreadcrumbs() {
 		global $site;
