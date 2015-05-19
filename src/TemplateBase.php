@@ -2,7 +2,7 @@
 
 class TemplateBase {
 	//// override these
-	protected $jsModules = [];	
+	protected $jsModuleConfig = [];	
 	protected $js = [];
 	protected $css = [];
 
@@ -15,9 +15,6 @@ class TemplateBase {
 
 	function __construct() {
 		global $site;
-		//$site['utils']['menu'] = new MenuUtils();
-		
-
 		//// TODO: allow formatting (sprintf) to determine e.g., sitename - pagetitle		
 		if (is_null($site['pagetitle'])) {
 			$breadcrumbs = $this->getBreadcrumbs();
@@ -38,38 +35,27 @@ class TemplateBase {
 		//// jsModules
 		/////////
 		$jsModuleFile = $site['fileroot'].'/jsmodules.php';
-		$jsModules = (file_exists($jsModuleFile)) ?
+		$jsModuleConfig = (file_exists($jsModuleFile)) ?
 			require($jsModuleFile) :
 			['sequence'=>[]];
-		//// determine which modules to include
-		foreach ($jsModules['sequence'] as $id) {
-			//// if it's been set on page/directory, leave that setting.
-			if (!isset($site['jsModules'][$id])) {
-				//// otherwise, if it's in the template jsModules set to true, otherwise set to false
-				$site['jsModules'][$id] = in_array($id, $this->jsModules);
-				
-			}
-		}
 		//// add module files to includes
-		$jsModuleManager = new \Athill\Utils\JsModuleManager($jsModules);
+		$jsModuleManager = new \Athill\Utils\JsModuleManager($jsModuleConfig);
+		//// template modules
+		$site['jsModules'] = $jsModuleManager->setToInclude($this->jsModules, $site['jsModules']);
 
-
-		//// TODO: Move this and the methods it uses to the manager
-		// foreach ($jsModules['sequence'] as $id) {
-		// 	if (isset($site['jsModules'][$id]) && $site['jsModules'][$id])  {
-		// 		$module = $jsModuleManager->getModule($id);
-		// 		$this->addModuleFiles($module);
-		// 	}
-		// }
-
+		//// module includes
 		$moduleIncludes = $jsModuleManager->getIncludes($site['jsModules']);
-		//// template scripts and styles
-		$this->includes = array_merge($this->includes, $this->js);
-		$this->includes = array_merge($this->includes, $this->css);
 
-		//// page/directory scripts and styles
-		$this->includes = array_merge($this->includes, $site['js']);
-		$this->includes = array_merge($this->includes, $site['css']);
+		//// add include files to includes
+		$this->includes = array_merge($this->includes, 
+			$moduleIncludes,
+			//// template scripts and styles
+			$this->js,
+			$this->css,
+			//// page/directory scripts and styles
+			$site['js'],
+			$site['css']
+		);
 
 		//// flash
 		if (!isset($_SESSION['flash'])) {
@@ -78,26 +64,6 @@ class TemplateBase {
 		$site['flash'] = $_SESSION['flash'];
 		$this->clearFlash();
 	}
-
-	// private function addModuleFiles($module) {
-	// 	$filetypes = array('js', 'css');
-	// 	$root = (isset($module['root'])) ? $module['root'] : '';
-	// 	foreach ($filetypes as $filetype) {
-	// 		if (isset($module[$filetype])) {
-	// 			$this->addFiles($root, $module[$filetype]);
-	// 		}
-	// 	}	
-	// }
-
-	// private function addFiles($root, $files) {
-	// 	if ($root != '') {
-	// 		$files = array_map(function($file) use($root) {
-	// 			return $root.$file;
-	// 		},
-	// 		$files);			
-	// 	} 
-	// 	$this->includes = array_merge($this->includes, $files);
-	// }
 
 	protected function getBreadcrumbs() {
 		global $site;

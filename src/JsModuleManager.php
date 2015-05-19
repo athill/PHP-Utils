@@ -17,7 +17,17 @@ class JsModuleManager {
 	function __construct($modules) {
 		$this->modules = $modules;
 	}
+
+	//// converts ['a', 'b', 'c'] to ['a'=>true, 'b'=>true, ...]
+	public function setToInclude($moduleList, $includes=[]) {
+		foreach ($moduleList as $id) {
+			$includes[$id] = true;
+		}
+		return $includes;
+	}
 	
+	//// given ['module1'=>true, 'module2'=>false, ...]
+	//// returns [<module1 files>, ...]
 	public function getIncludes($moduleSettings, $includes=[]) {
 		foreach ($this->modules['sequence'] as $id) {
 			if (isset($moduleSettings[$id]) && $moduleSettings[$id])  {
@@ -37,13 +47,13 @@ class JsModuleManager {
 		}
 	}
 
+	//// given a module, returns an array of js/css files
 	private function addModuleFiles($module, $includes=[]) {
 		$filetypes = ['js', 'css'];
 		$root = (isset($module['root'])) ? $module['root'] : '';
 		foreach ($filetypes as $filetype) {
-			$moduleType = $module[$filetype];
-			if (isset($moduleType)) {
-				$includes = array_merge($files, $this->addFiles($root, $moduleType));
+			if (isset($module[$filetype])) {
+				$includes = array_merge($includes, $this->addFiles($root, $module[$filetype]));
 			}
 		}
 		return $includes;	
