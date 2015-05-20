@@ -4,17 +4,27 @@ class JsModuleManager {
 	private $modules;
 
 	/**
-	 * Takes a json array of the form:
-	 * { "module-name": {
-	 *    "root": 'path-to-files-root'	////optional
-	 *    "js": ["js-file1", ...], 
-	 *    "css": ["cssfile1", ...]    ////js/css entries are optional
-	 *   }, 
-	 *   ...
-	 * }
+	 * Takes a configuration array of the form:
+	 * [
+	 * 		'sequence'=>[<modules to load first>, ...]
+	 * 		'modules'=>[
+	 * 			<module-name>=>[
+	 * 				'root'=><path-to-files-root>, ////optional
+	 * 				'js'=>[<js-files-to-include>,...],
+	 * 				'css'=>[<css-files-to-include>,...] //// js/css are optional
+	 * 			],
+	 * 			...	
+	 * 		]
+	 * ]
 	 */
 	
-	function __construct($modules) {
+	function __construct($modules=[]) {
+		$keys = ['sequence', 'modules'];
+		foreach ($keys as $key) {
+			if (!isset($modules[$key])) {
+				$modules[$key] = [];
+			}
+		}
 		$this->modules = $modules;
 	}
 
@@ -35,6 +45,15 @@ class JsModuleManager {
 				$includes = array_merge($includes, $this->addModuleFiles($module));
 			}
 		}
+		foreach ($this->modules['modules'] as $id => $def) {
+			if (in_array($id, $this->modules['sequence'])) {
+				continue;
+			}
+			if (isset($moduleSettings[$id]) && $moduleSettings[$id])  {
+				$module = $this->getModule($id);
+				$includes = array_merge($includes, $this->addModuleFiles($module));
+			}			
+		}
 		return $includes;
 	}	
 
@@ -43,7 +62,7 @@ class JsModuleManager {
 		if (isset($this->modules['modules'][$id])) {
 			return $this->modules['modules'][$id];
 		} else {
-			throw new Exception('Undefined module '.$id);
+			throw new \Exception('Undefined module '.$id);
 		}
 	}
 
