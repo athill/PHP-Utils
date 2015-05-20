@@ -1,5 +1,5 @@
 <?php
-require('./setup.inc.php');
+require('./conf/setup.php');
 
 $local = [
 	'css'=>['https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css'],

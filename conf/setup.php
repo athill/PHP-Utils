@@ -6,7 +6,7 @@ date_default_timezone_set('America/New_York');
 
 //// need these
 $webroot = '';
-$fileroot = dirname(__FILE__);
+$fileroot = dirname(dirname(__FILE__));
 $instance = 'dev';
 
 //// determine instance based on host

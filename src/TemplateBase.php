@@ -34,10 +34,8 @@ class TemplateBase {
 		/////////
 		//// jsModules
 		/////////
-		$jsModuleFile = $site['fileroot'].'/jsmodules.php';
-		$jsModuleConfig = (file_exists($jsModuleFile)) ?
-			require($jsModuleFile) :
-			['sequence'=>[]];
+		$jsModuleFile = $site['confroot'].'/jsmodules.php';
+		$jsModuleConfig = (file_exists($jsModuleFile)) ? require($jsModuleFile) : [];
 		//// add module files to includes
 		$jsModuleManager = new \Athill\Utils\JsModuleManager($jsModuleConfig);
 		//// template modules

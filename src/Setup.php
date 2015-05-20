@@ -36,6 +36,7 @@ class Setup {
 				'utils'=>'\Athill\Utils\Utils'
 			]			
 		);
+		$defaults['confroot'] = $fileroot.'/conf';
 		$utils = new $defaults['objects']['utils']();
 		//// override base settings
 		$defaults = $utils->extend($defaults, $this->basesettings);		
@@ -47,10 +48,17 @@ class Setup {
 			$defaults['logger']->pushHandler(new \Monolog\Handler\StreamHandler($defaults['fileroot'].'/logs/main.log'));
 		}
 		//// menu
-		$menufile = $defaults['fileroot'].'/menu.json';
-		$defaults['menu'] = array();
+		$defaults['menu'] = [];
+		//// json
+		$menufile = $defaults['confroot'].'/menu.json';
 		if (file_exists($menufile)) {
 			$defaults['menu'] = json_decode(file_get_contents($menufile), true);
+		//// php
+		} else {
+			$menufile = preg_replace('/json$/', 'php', $menufile);
+			if (file_exists($menufile)) {
+				$defaults['menu'] = require($menufile);
+			}
 		}
 		//// meta info to be passed to head tag
 		$defaults['meta'] = array(
@@ -92,12 +100,12 @@ class Setup {
 	public function setEnvironment() {
 		global $site;
 		//// environment vars
-		$base_env_file = $site['fileroot'].'/.env.php';
+		$base_env_file = $site['confroot'].'/.env.php';
 		if (file_exists($base_env_file)) {
 			$env = require($base_env_file);
 			$_ENV = array_merge($_ENV, $env);
 		}
-		$instance_env_file = $site['fileroot'].'/.env.'.$site['instance'].'.php';
+		$instance_env_file = $site['confroot'].'/.env.'.$site['instance'].'.php';
 		if (file_exists($instance_env_file)) {
 			$env = require($instance_env_file);
 			$_ENV = array_merge($_ENV, $env);
