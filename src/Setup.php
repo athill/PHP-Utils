@@ -36,10 +36,11 @@ class Setup {
 				'utils'=>'\Athill\Utils\Utils'
 			]			
 		);
-		$defaults['confroot'] = $fileroot.'/conf';
+		$defaults['confroot'] = $defaults['fileroot'].'/conf';
 		$utils = new $defaults['objects']['utils']();
 		//// override base settings
 		$defaults = $utils->extend($defaults, $this->basesettings);		
+
 		//// logging
 		if (isset($this->basesettings['logger'])) {
 			$defaults['logger'] = $this->basesettings['logger'];
