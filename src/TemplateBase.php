@@ -34,7 +34,7 @@ class TemplateBase {
 		/////////
 		//// jsModules
 		/////////
-		$jsModuleFile = $site['fileroot'].'/jsmodules.php';
+		$jsModuleFile = $site['confroot'].'/jsmodules.php';
 		$jsModuleConfig = (file_exists($jsModuleFile)) ?
 			require($jsModuleFile) :
 			['sequence'=>[]];
