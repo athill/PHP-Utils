@@ -1040,8 +1040,9 @@ class Html extends Xml {
 			else if ($container == "div" || ($container == "none" && $selectall)) $this->odiv($containerAtts);
 			for ($i = 0; $i < count($vals); $i++) {
 				//echo "<br>";
-				$this->br();
+				
 				if ($container == "table") $this->otd();
+				// else $this->br();
 				$value = $vals[$i];
 				$labl = $value;
 				$tempArr = explode("|", $value);
