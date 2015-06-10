@@ -33,7 +33,8 @@ class Setup {
 				'security'=>'\Athill\Utils\Security',
 				'template'=>'\Athill\Utils\Templates\DefaultTemplate',
 				'menu'=>'\Athill\Utils\MenuUtils',
-				'utils'=>'\Athill\Utils\Utils'
+				'utils'=>'\Athill\Utils\Utils',
+				'error'=>'Athill\Utils\Error'
 			]			
 		);
 		$defaults['confroot'] = $defaults['fileroot'].'/conf';
@@ -125,7 +126,8 @@ class Setup {
 			'security' => new $site['objects']['security'](),
 			'utils'=> new \Athill\Utils\Utils(),
 			'template'=>null, 	////
-			'menu'=>new $site['objects']['menu']() 		//// MenuUtils
+			'menu'=>new $site['objects']['menu'](),		//// MenuUtils
+			'error'=>new Error($site['instance'])
 		];
 		return $utils;
 	}

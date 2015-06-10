@@ -15,6 +15,7 @@ if (isset($_SERVER['HTTP_HOST'])) {
 	$host = preg_replace('/([^:]+):\\d+/', '$1', $_SERVER['HTTP_HOST']);
 	switch ($host) {
 		case 'demo.andyhill.us':
+		case 'localhost':
 			$instance = 'prd';
 			break;
 	}

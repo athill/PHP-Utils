@@ -41,8 +41,8 @@ class TemplateBase {
 		//// add module files to includes
 		$jsModuleManager = new \Athill\Utils\JsModuleManager($jsModuleConfig);
 		//// template modules
+		// $site['jsModules'] = $jsModuleManager->setToInclude([], $site['jsModules']);
 		$site['jsModules'] = $jsModuleManager->setToInclude($this->jsModules, $site['jsModules']);
-
 		//// module includes
 		$moduleIncludes = $jsModuleManager->getIncludes($site['jsModules']);
 
