@@ -846,8 +846,18 @@ class Html extends Xml {
 	 * @param	method	string	default="post" additional attributes
 	 * @param	atts	string	default="" additional attributes
 	 */	
-	public function oform($action, $method='post', $atts='') {
-		$atts = 'action="'.$action.'" method="'.$method.'"'.$this->fixAtts($atts);
+	public function oform($action=[], $method='post', $atts='') {
+		//// new way - just pass in the atts
+		if (is_array($action)) {
+			$atts = $action;
+			//// action is required (I think)
+			if (!isset($atts['action'])) {
+				$atts['action'] = '';
+			}
+		//// old way - required args
+		} else {
+			$atts = 'action="'.$action.'" method="'.$method.'"'.$this->fixAtts($atts);			
+		}
 		$this->otag('form', $atts, false);
 	}
 

@@ -6,12 +6,7 @@ $local = [
 ];
 
 $page = new \Athill\Utils\Page($local);
-$_SESSION['flash']['info'][] = 'test';
-// $base = new \Athill\Utils\TemplateBase();
-// $h->pa($_SESSION['flash']);
-// $h->pa($site['flash']);
-// $base->messages();
+$h->p('Page Content');
 
-// $h->pa($_ENV);
 
 $page->end();
