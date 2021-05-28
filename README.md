@@ -1,5 +1,9 @@
 # PHP Utility Classes
 
+## Archived
+
+This was a project to ease the building of websites. It had some good ideas, but was not extensible enough and lost even more relevance when the client side moved beyond jQuery.
+
 ## Philosophy
 The idea of this project is to be the the poor man's [Laravel](http://laravel.com/). By that I mean, I am a huge fan of Laravel, but 
 
